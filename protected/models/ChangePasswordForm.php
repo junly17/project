@@ -24,7 +24,8 @@ class ChangePasswordForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'current'=>'Old Password',
+			'current'=>'Current Password',
+			'newPassword'=>'Your New Password'
 		);
 	}
 
