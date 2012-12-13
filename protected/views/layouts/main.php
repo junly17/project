@@ -38,22 +38,28 @@
 			);
 			if($role == 'student') {
 				$items = array(
+					array('label'=>'Home', 'url'=>array('/student/home'), 'visible'=>true),
 					array('label'=>'Change Password', 'url'=>array('/site/changePassword'), 'visible'=>true),
 					array('label'=>'Logout ('.Yii::app()->user->name.' : Student)', 'url'=>array('/site/logout'), 'visible'=>true)	
 				);
 			}
 			else if($role == 'teacher') {
 				$items = array(
+					array('label'=>'Home', 'url'=>array('/teacher/home'), 'visible'=>true),
+					array('label'=>'Change Password', 'url'=>array('/site/changePassword'), 'visible'=>true),
 					array('label'=>'Logout ('.Yii::app()->user->name.' : Teacher)', 'url'=>array('/site/logout'), 'visible'=>true)
 				);
 			}
 			else if($role == 'staff') {
 				$items = array(
+					array('label'=>'Home', 'url'=>array('/staff/home'), 'visible'=>true),
+					array('label'=>'Change Password', 'url'=>array('/site/changePassword'), 'visible'=>true),
 					array('label'=>'Logout ('.Yii::app()->user->name.' : Staff)', 'url'=>array('/site/logout'), 'visible'=>true)
 				);
 			}
 			else if($role == 'admin') {
 				$items = array(
+					array('label'=>'Home', 'url'=>array('/admin/index'), 'visible'=>true),
 					array('label'=>'Logout (Admin)', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 				);
 			}

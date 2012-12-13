@@ -3,7 +3,7 @@
 /* @var $model Staff */
 
 $this->breadcrumbs=array(
-	'Admin'=>array('admin/index'),
+	'Home'=>array('admin/index'),
 	'Staffs'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',

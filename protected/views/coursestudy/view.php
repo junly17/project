@@ -3,7 +3,7 @@
 /* @var $model Coursestudy */
 
 $this->breadcrumbs=array(
-	'Admin'=>array('admin/index'),
+	'Home'=>array('admin/index'),
 	'Coursestudies'=>array('index'),
 	$model->id,
 );
@@ -22,9 +22,15 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'courseId',
-		'studentId',
+		// 'id',
+		array(
+			'name'=>'courseId',
+			'value'=>$model->course->fullname,
+		),
+		array(
+			'name'=>'studentId',
+			'value'=>$model->student->fullname,
+		),
 		'sectionGroup',
 	),
 )); ?>

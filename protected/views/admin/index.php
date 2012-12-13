@@ -1,10 +1,4 @@
-<?php
-/* @var $this AdminController */
 
-$this->breadcrumbs=array(
-	'Admin',
-);
-?>
 <h1>Admin</h1>
 
 <ul>

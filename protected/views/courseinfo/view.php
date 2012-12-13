@@ -3,7 +3,7 @@
 /* @var $model Courseinfo */
 
 $this->breadcrumbs=array(
-	'Admin'=>array('admin/index'),
+	'Home'=>array('admin/index'),
 	'Courseinfos'=>array('index'),
 	$model->id,
 );
@@ -22,8 +22,11 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'courseId',
+		// 'id',
+		array(
+			'name'=>'courseId',
+			'value'=>$model->course->fullname,
+		),
 		'courseStatus',
 		'sectionGroup',
 		'timeBegin',
@@ -31,6 +34,9 @@ $this->menu=array(
 		'build',
 		'room',
 		'studyDay',
-		'teacherId',
+		array(
+			'name'=>'teacherId',
+			'value'=>$model->teacher->fullname,
+		),
 	),
 )); ?>

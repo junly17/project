@@ -1,3 +1,13 @@
+<?php
+
+$this->pageTitle=Yii::app()->name . ' - Change Password';
+$this->breadcrumbs=array(
+	'ChangePassword',
+);
+?>
+
+<h1>Change Password</h1>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

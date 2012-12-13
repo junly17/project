@@ -122,6 +122,7 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
+
 	public function actionChangePassword()
 	{
 		$data = new ChangePasswordForm;
@@ -133,12 +134,13 @@ class SiteController extends Controller
 				$userId = Yii::app()->user->id;
 				$user = User::model()->findByPk($userId);
 				if($data->current !== $user->password) {
-					$data->addError('current', 'Your current password is incorrect');
+					$data->addError('current', 'Your old password is incorrect');
 					$this->render('changePassword', array('model'=>$data));
 					return;
 				}
 				if($data->newPassword !== $data->confirmPassword)
 				{
+					$data->addError('confirmPassword', 'Your new password and confirm password does not match');
 					$this->render('changePassword', array('model'=>$data));
 					return;
 				}
@@ -150,7 +152,17 @@ class SiteController extends Controller
 					$this->redirect(array('student/home'));
 					return;
 				}
-				return;
+				else if($role === 'teacher')
+				{
+					$this->redirect(array('teacher/home'));
+					return;
+				}
+				else if($role === 'staff')
+				{
+					$this->redirect(array('staff/home'));
+					return;
+				}
+				//return;
 			}
 		}
 		$this->render('changePassword', array('model'=>$data));

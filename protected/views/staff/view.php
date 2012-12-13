@@ -3,7 +3,7 @@
 /* @var $model Staff */
 
 $this->breadcrumbs=array(
-	'Admin'=>array('admin/index'),
+	'Home'=>array('admin/index'),
 	'Staffs'=>array('index'),
 	$model->id,
 );
@@ -22,10 +22,10 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		// 'id',
 		'staffCode',
 		'staffName',
 		'staffLastname',
-		'userId',
+		// 'userId',
 	),
 )); ?>

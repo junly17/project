@@ -3,7 +3,7 @@
 /* @var $model Semester */
 
 $this->breadcrumbs=array(
-	'Admin'=>array('admin/index'),
+	'Home'=>array('admin/index'),
 	'Semesters'=>array('index'),
 	$model->name,
 );
@@ -22,7 +22,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		// 'id',
 		'semester',
 		'year',
 		'openDate',
