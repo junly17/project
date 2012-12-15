@@ -28,7 +28,7 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow', 
-				'actions'=>array('home'),
+				'actions'=>array('home','studycourse'),
 				'users'=>array('@'),
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -186,22 +186,34 @@ class StudentController extends Controller
 
 	public function actionHome()
 	{
-		$userId = Yii::app()->user->id;
-		$data = Student::model()->findByPk($userId);
-
-	
-
-
+		$criteria = new CDbCriteria;
+		$criteria->condition='userId=:user';
+		$criteria->params=array(':user'=>Yii::app()->user->id);
+		$user = Student::model()->find($criteria);
+		$getStudent = $user->id;
 
 		$dataProvider=new CActiveDataProvider('Coursestudy', array(
 			'pagination'=>array(
 		        'pageSize'=>10,
 		    ),
-			'data'=>$data,
+		    'criteria'=>array(
+				'condition'=>'t.studentId = :user_id',
+	            'params'=>array(
+	                ':user_id'=>$getStudent,
+	            ),
+            	'together'=>true,
+            )
 		));
 
 		$this->render('home',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+
+	public function actionStudycourse()
+	{
+		$this->render('studycourse');
+
 	}
 }

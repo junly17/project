@@ -28,7 +28,7 @@ class TeacherController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('home'),
+				'actions'=>array('home','studycourse','studysemester','courserequire'),
 				'users'=>array('@'),
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -184,6 +184,49 @@ class TeacherController extends Controller
 
 	public function actionHome()
 	{
-		$this->render('home');
+		$criteria = new CDbCriteria;
+		$criteria->condition='userId=:user';
+		$criteria->params=array(':user'=>Yii::app()->user->id);
+		$user = Teacher::model()->find($criteria);
+
+		$post = $user->id;
+
+		$dataProvider=new CActiveDataProvider('Courseinfo', array(
+			'pagination'=>array(
+		        'pageSize'=>10,
+		    ),
+		    'criteria'=>array(
+				'condition'=>'t.teacherId = :user_id',
+	            'params'=>array(
+	                ':user_id'=>$post,
+	            ),
+            	'together'=>true,
+            )
+		));
+
+		$this->render('home',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+
+	public function actionStudycourse()
+	{
+		$this->render('studycourse');
+
+	}
+
+
+	public function actionStudysemester()
+	{
+		$this->render('studysemester');
+
+	}
+
+
+	public function actionCourserequire()
+	{
+		$this->render('courserequire');
+
 	}
 }
