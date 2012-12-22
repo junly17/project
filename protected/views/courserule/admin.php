@@ -3,7 +3,6 @@
 /* @var $model Courserule */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Courserules'=>array('index'),
 	'Manage',
 );
@@ -51,6 +50,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'courseId',
 			'value'=>'$data->course->fullname',
 		),
+		'courseStatus',
 		'lateTime',
 		'absenceTime',
 		'condition',

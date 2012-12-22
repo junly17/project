@@ -37,7 +37,7 @@ class CourseinfoController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,6 +51,11 @@ class CourseinfoController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +67,11 @@ class CourseinfoController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Courseinfo;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -69,9 +79,33 @@ class CourseinfoController extends Controller
 
 		if(isset($_POST['Courseinfo']))
 		{
+			date_default_timezone_set('Asia/Taipei');
 			$model->attributes=$_POST['Courseinfo'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$cinfo = Courseinfo::model()->find('courseId=:course', array(':course'=>$model->courseId));
+
+			if($cinfo!==null) 
+			{
+				if($cinfo->courseStatus==$model->courseStatus && $cinfo->sectionGroup==$model->sectionGroup)
+				{
+					$model->addError('courseId', 'You have this course, coures status and section/group already');
+					$model->addError('courseStatus', 'You have this course, coures status and section/group already');
+					$model->addError('sectionGroup', 'You have this course, coures status and section/group already');
+					$this->render('create', array('model'=>$model));
+					return;
+				}
+				else
+				{
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
+				}
+				
+			}
+			else
+			{
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
+
 		}
 
 		$this->render('create',array(
@@ -86,6 +120,11 @@ class CourseinfoController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -93,9 +132,33 @@ class CourseinfoController extends Controller
 
 		if(isset($_POST['Courseinfo']))
 		{
+			date_default_timezone_set('Asia/Taipei');
 			$model->attributes=$_POST['Courseinfo'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$cinfo = Courseinfo::model()->find('courseId=:course', array(':course'=>$model->courseId));
+
+			if($cinfo!==null) 
+			{
+				if($cinfo->courseStatus==$model->courseStatus && $cinfo->sectionGroup==$model->sectionGroup
+					&& $cinfo->id!==$model->id)
+				{
+					$model->addError('courseId', 'You have this course, coures status and section/group already');
+					$model->addError('courseStatus', 'You have this course, coures status and section/group already');
+					$model->addError('sectionGroup', 'You have this course, coures status and section/group already');
+					$this->render('create', array('model'=>$model));
+					return;
+				}
+				else
+				{
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
+				}
+				
+			}
+			else
+			{
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
@@ -110,6 +173,11 @@ class CourseinfoController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -122,6 +190,11 @@ class CourseinfoController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$dataProvider=new CActiveDataProvider('Courseinfo');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -133,6 +206,11 @@ class CourseinfoController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$model=new Courseinfo('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Courseinfo']))

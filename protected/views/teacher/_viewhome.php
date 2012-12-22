@@ -1,43 +1,42 @@
 <div class="view">
 
-
-	<b><?php echo CHtml::encode($data->course->getAttributeLabel('course')); ?>:</b>
-	<?php echo CHtml::encode($data->course->fullname); ?>
+	<b>Course:</b>
+	<?php echo CHtml::encode($data['courseCode'].' '.$data['courseName']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('courseStatus')); ?>:</b>
-	<?php echo CHtml::encode($data->courseStatus); ?>
+	<b>Course Status:</b>
+	<?php echo CHtml::encode($data['courseStatus']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('sectionGroup')); ?>:</b>
-	<?php echo CHtml::encode($data->sectionGroup); ?>
+	<b>Section Group:</b>
+	<?php echo CHtml::encode($data['sectionGroup']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('timeBegin')); ?>:</b>
-	<?php echo CHtml::encode($data->timeBegin); ?>
+	<b>Time Begin:</b>
+	<?php echo CHtml::encode($data['timeBegin']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('timeOut')); ?>:</b>
-	<?php echo CHtml::encode($data->timeOut); ?>
+	<b>Time Out:</b>
+	<?php echo CHtml::encode($data['timeOut']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('build')); ?>:</b>
-	<?php echo CHtml::encode($data->build); ?>
+	<b>Build:</b>
+	<?php echo CHtml::encode($data['build']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('room')); ?>:</b>
-	<?php echo CHtml::encode($data->room); ?>
+	<b>Room:</b>
+	<?php echo CHtml::encode($data['room']); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('studyDay')); ?>:</b>
-	<?php echo CHtml::encode($data->studyDay); ?>
+	<b>Study Day:</b>
+	<?php echo CHtml::encode($data['studyDay']); ?>
 	<br />
-
+	
 	<br />
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('สถานะการเข้าชั้นเรียนรายวัน',array('submit'=>array('teacher/studycourse'))); ?>
-		<?php echo CHtml::submitButton('สถานะการเข้าชั้นเรียนรายภาคการศึกษา',array('submit'=>array('teacher/studysemester'))); ?>
-		<?php echo CHtml::submitButton('เงื่อนไขสำหรับการศึกษาในรายวิชา',array('submit'=>array('teacher/courserequire'))); ?>
+		<?php echo CHtml::submitButton('สถานะการเข้าชั้นเรียนรายวัน',array('submit'=>array('teacher/firststudycourse','cid'=>$data['courseId'],'cstatus'=>$data['courseStatus'],'sec'=>$data['sectionGroup']))); ?>
+		<?php echo CHtml::submitButton('สถานะการเข้าชั้นเรียนรายภาคการศึกษา',array('submit'=>array('teacher/studysemester','cid'=>$data['courseId'],'cstatus'=>$data['courseStatus'],'sec'=>$data['sectionGroup']))); ?>
+		<?php echo CHtml::submitButton('ข้อกำหนดรายวิชา',array('submit'=>array('teacher/courserequire','cid'=>$data['courseId'],'cstatus'=>$data['courseStatus']))); ?>
 	</div>
 
 

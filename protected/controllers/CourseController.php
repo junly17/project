@@ -37,7 +37,7 @@ class CourseController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,6 +51,11 @@ class CourseController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +67,11 @@ class CourseController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Course;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -70,8 +80,25 @@ class CourseController extends Controller
 		if(isset($_POST['Course']))
 		{
 			$model->attributes=$_POST['Course'];
-			if($model->save())
+
+			// $criteria = new CDbCriteria;
+			// $criteria->condition='courseCode=:course';
+			// $criteria->params=array(':course'=>$model->courseCode);
+			// $course = Course::model()->find($criteria);
+
+			$course = Course::model()->find('courseCode=:code', array(':code'=>$model->courseCode));
+
+			if($course!==null) 
+			{
+				$model->addError('courseCode', 'You have this course already');
+				$this->render('create', array('model'=>$model));
+				return;
+			}
+			else 
+			{
+				if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -86,6 +113,11 @@ class CourseController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -110,6 +142,11 @@ class CourseController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -122,6 +159,11 @@ class CourseController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$dataProvider=new CActiveDataProvider('Course');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -133,6 +175,11 @@ class CourseController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff','admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$model=new Course('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Course']))

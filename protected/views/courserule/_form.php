@@ -24,16 +24,24 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'courseStatus'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'courseStatus',array('Lecture'=>'Lecture','Laboratory'=>'Laboratory'));
+		?>
+		<?php echo $form->error($model,'courseStatus'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'lateTime'); ?>
 		<?php echo $form->textField($model,'lateTime'); ?>
-		(ex. 8:00)
+		(ex. 08:00:00)
 		<?php echo $form->error($model,'lateTime'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'absenceTime'); ?>
 		<?php echo $form->textField($model,'absenceTime'); ?>
-		(ex. 8:00)
+		(ex. 08:00:00)
 		<?php echo $form->error($model,'absenceTime'); ?>
 	</div>
 

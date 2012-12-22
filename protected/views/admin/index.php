@@ -10,5 +10,6 @@
 	<li><?php echo CHtml::link("ข้อกำหนดรายวิชา (Course rule)",array('courserule/index')); ?></li>
 	<li><?php echo CHtml::link("ภาคการศึกษา (Semester)",array('semester/index')); ?></li>
     <li><?php echo CHtml::link("รายวิชาที่เรียน (Course study)",array('coursestudy/index')); ?></li>
+    <li><?php echo CHtml::link("การเข้าเรียน (Attend)",array('attend/index')); ?></li>
 	<li><?php echo CHtml::link("รหัสการเข้าใช้งาน (Username)",array('user/index')); ?></li>
 </ul>

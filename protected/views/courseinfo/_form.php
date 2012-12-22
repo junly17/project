@@ -17,7 +17,6 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'courseId'); ?>
-		<!-- <?php echo $form->textField($model,'courseId'); ?> -->
 		<?php 
 			echo $form->dropDownList($model, 'courseId', CHtml::listData( Course::model()->findAll(), 'id', 'fullName' ));
 		?>
@@ -41,14 +40,14 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'timeBegin'); ?>
 		<?php echo $form->textField($model,'timeBegin'); ?>
-		(ex. 8:00)
+		(ex. 08:00:00)
 		<?php echo $form->error($model,'timeBegin'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'timeOut'); ?>
 		<?php echo $form->textField($model,'timeOut'); ?>
-		(ex. 8:00)
+		(ex. 08:00:00)
 		<?php echo $form->error($model,'timeOut'); ?>
 	</div>
 

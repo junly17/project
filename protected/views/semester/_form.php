@@ -24,6 +24,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'year'); ?>
 		<?php echo $form->textField($model,'year',array('size'=>4,'maxlength'=>4)); ?>
+		(ค.ศ.)
 		<?php echo $form->error($model,'year'); ?>
 	</div>
 
@@ -57,6 +58,12 @@
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'active'); ?>
+		<?php echo $form->dropDownList($model,'active',array('0'=>'Not active','1'=>'Active')); ?>
+		<?php echo $form->error($model,'active'); ?>
 	</div>
 
 	<div class="row buttons">

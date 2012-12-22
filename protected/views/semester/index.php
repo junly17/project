@@ -3,7 +3,6 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Semesters',
 );
 

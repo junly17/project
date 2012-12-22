@@ -37,7 +37,7 @@ class CoursestudyController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,6 +51,11 @@ class CoursestudyController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +67,11 @@ class CoursestudyController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$model=new Coursestudy;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -70,8 +80,56 @@ class CoursestudyController extends Controller
 		if(isset($_POST['Coursestudy']))
 		{
 			$model->attributes=$_POST['Coursestudy'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+
+			$cinfo = Courseinfo::model()->find('courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec',
+					 array(':course'=>$model->courseId,':cstatus'=>$model->courseStatus,':sec'=>$model->sectionGroup));
+
+			$cstudy = Coursestudy::model()->find('courseId=:course', array(':course'=>$model->courseId));
+
+			if($cinfo == null)
+			{
+				$model->addError('sectionGroup', 'Do not have section/group in this courseinfo');
+				$this->render('create', array('model'=>$model));
+				return;
+			}
+
+			if($cstudy!==null) 
+			{
+				if($cstudy->studentId==$model->studentId && $cstudy->sectionGroup==$model->sectionGroup 
+					&& $cstudy->courseStatus==$model->courseStatus)
+				{
+					
+					$model->addError('courseId', 'You have this course, student, course status and section/group already');
+					$model->addError('studentId', 'You have this course, student, course status and section/group already');
+					$model->addError('courseStatus', 'You have this course, student, course status and section/group already');
+					$model->addError('sectionGroup', 'You have this course, student, course status and section/group already');
+					$this->render('create', array('model'=>$model));
+					return;
+				}
+				else
+				{
+					$criteria = new CDbCriteria;
+					$criteria->condition='courseId=:course';
+					$criteria->params=array(':course'=>$model->courseId);
+					$courseinfo = Courseinfo::model()->find($criteria);
+					$model->courseinfoId=$courseinfo->id;
+
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
+				}
+			}
+			else
+			{
+				$criteria = new CDbCriteria;
+				$criteria->condition='courseId=:course';
+				$criteria->params=array(':course'=>$model->courseId);
+				$courseinfo = Courseinfo::model()->find($criteria);
+				$model->courseinfoId=$courseinfo->id;
+
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
+
 		}
 
 		$this->render('create',array(
@@ -86,6 +144,11 @@ class CoursestudyController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -94,8 +157,55 @@ class CoursestudyController extends Controller
 		if(isset($_POST['Coursestudy']))
 		{
 			$model->attributes=$_POST['Coursestudy'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+
+			$cinfo = Courseinfo::model()->find('courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec',
+					 array(':course'=>$model->courseId,':cstatus'=>$model->courseStatus,':sec'=>$model->sectionGroup));
+
+			$cstudy = Coursestudy::model()->find('courseId=:course', array(':course'=>$model->courseId));
+
+			if($cinfo == null)
+			{
+				$model->addError('sectionGroup', 'Do not have section/group in this courseinfo');
+				$this->render('create', array('model'=>$model));
+				return;
+			}
+
+			if($cstudy!==null) 
+			{
+				if($cstudy->studentId==$model->studentId && $cstudy->sectionGroup==$model->sectionGroup 
+					&& $cstudy->courseStatus==$model->courseStatus && $cstudy->id!==$model->id)
+				{
+					$model->addError('courseId', 'You have this course, student, course status and section/group already');
+					$model->addError('studentId', 'You have this course, student, course status and section/group already');
+					$model->addError('courseStatus', 'You have this course, student, course status and section/group already');
+					$model->addError('sectionGroup', 'You have this course, student, course status and section/group already');
+					$this->render('create', array('model'=>$model));
+					return;
+				}
+				else
+				{
+					$criteria = new CDbCriteria;
+					$criteria->condition='courseId=:course';
+					$criteria->params=array(':course'=>$model->courseId);
+					$courseinfo = Courseinfo::model()->find($criteria);
+					$model->courseinfoId=$courseinfo->id;
+
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
+				}
+			}
+			else
+			{
+				$criteria = new CDbCriteria;
+				$criteria->condition='courseId=:course';
+				$criteria->params=array(':course'=>$model->courseId);
+				$courseinfo = Courseinfo::model()->find($criteria);
+				$model->courseinfoId=$courseinfo->id;
+
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
+
 		}
 
 		$this->render('update',array(
@@ -110,6 +220,11 @@ class CoursestudyController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -122,6 +237,11 @@ class CoursestudyController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$dataProvider=new CActiveDataProvider('Coursestudy');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -133,6 +253,11 @@ class CoursestudyController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$model=new Coursestudy('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Coursestudy']))

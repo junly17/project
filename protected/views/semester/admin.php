@@ -3,7 +3,6 @@
 /* @var $model Semester */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Semesters'=>array('index'),
 	'Manage',
 );
@@ -52,6 +51,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'openDate',
 		'endDate',
 		'name',
+		array(
+			'name'=>'active',
+			'value'=>'$data->activename',
+		),
 		array(
 			'class'=>'CButtonColumn',
 		),

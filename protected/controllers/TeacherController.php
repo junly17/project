@@ -28,11 +28,11 @@ class TeacherController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('home','studycourse','studysemester','courserequire'),
+				'actions'=>array('home','studycourse','studysemester','courserequire','updaterule'),
 				'users'=>array('@'),
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','firststudycourse'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -41,7 +41,7 @@ class TeacherController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -55,6 +55,11 @@ class TeacherController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -66,6 +71,11 @@ class TeacherController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Teacher;
 		$user=new User;
 
@@ -76,12 +86,23 @@ class TeacherController extends Controller
 		{
 			$model->attributes=$_POST['Teacher'];
 			$user->attributes=$_POST['User'];
-			$user->username = $model->teacherCode;
-			$user->role = 'teacher';
-			$user->save();
-			$model->userId = $user->id;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$teacher = teacher::model()->find('teacherCode=:code', array(':code'=>$model->teacherCode));
+
+			if($teacher!==null) 
+			{
+				$model->addError('teacherCode', 'You have this teacherID already');
+				$this->render('create', array('model'=>$model,'user'=>$user));
+				return;
+			}
+			else
+			{
+				$user->username = $model->teacherCode;
+				$user->role = 'teacher';
+				$user->save();
+				$model->userId = $user->id;
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -96,6 +117,11 @@ class TeacherController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -120,6 +146,11 @@ class TeacherController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$teacher = $this->loadModel($id);
 		$userId = $teacher->userId;
 		$teacher->delete();
@@ -135,6 +166,11 @@ class TeacherController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$dataProvider=new CActiveDataProvider('Teacher');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -146,6 +182,11 @@ class TeacherController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		} 
+
 		$model=new Teacher('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Teacher']))
@@ -184,41 +225,139 @@ class TeacherController extends Controller
 
 	public function actionHome()
 	{
-		$criteria = new CDbCriteria;
-		$criteria->condition='userId=:user';
-		$criteria->params=array(':user'=>Yii::app()->user->id);
-		$user = Teacher::model()->find($criteria);
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('teacher'))) {
+			$this->redirect(array('site/index'));
+		}
 
-		$post = $user->id;
+		$info = Yii::app()->db->createCommand()
+		    ->select('cinfo.*, c.courseName, c.courseCode, s.name as sname')
+		    ->from('tbl_user u')
+		    ->join('tbl_teacher t', 'u.id = t.userId')
+			->join('tbl_courseinfo cinfo', 'cinfo.teacherId = t.id')
+			->join('tbl_course c', 'cinfo.courseId = c.id')
+			->join('tbl_semester s', 'c.semesterId = s.id');
 
-		$dataProvider=new CActiveDataProvider('Courseinfo', array(
-			'pagination'=>array(
-		        'pageSize'=>10,
-		    ),
-		    'criteria'=>array(
-				'condition'=>'t.teacherId = :user_id',
-	            'params'=>array(
-	                ':user_id'=>$post,
-	            ),
-            	'together'=>true,
-            )
-		));
+		$semester;
+		if(isset($_GET['sid']))
+		{
+			$sid = $_GET['sid'];
+			$semester = Semester::model()->findByPk($sid);
+			$info->where('s.id = :sid AND u.id =:user',array(':user'=>Yii::app()->user->id, ':sid'=>$sid));
+		}
+		else
+		{
+			$semester = Semester::model()->find('active=1');
+		    $info->where('s.active = 1 AND u.id =:user',array(':user'=>Yii::app()->user->id));
+		}
+		
+		$info = $info->query();
+		
+		$courseInfo = $info->readAll();
+		$dataProvider = new CArrayDataProvider($courseInfo);
+
+		$allSemester = Semester::model()->findAll();
 
 		$this->render('home',array(
 			'dataProvider'=>$dataProvider,
+			'semester'=>$semester,
+			'allSemester'=>$allSemester
 		));
 	}
 
 
 	public function actionStudycourse()
 	{
-		$this->render('studycourse');
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('teacher'))) {
+			$this->redirect(array('site/index'));
+		}
+
+		$cid = $_GET['cid'];
+		$cstatus = $_GET['cstatus'];
+		$sec = $_GET['sec'];
+		$studentName = "";
+
+		if (isset($_GET['studentName']))
+			$studentName = $_GET['studentName'];
+		
+		$model=new Attend('searchCourse');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Attend']))
+			$model->attributes=$_GET['Attend'];
+
+		$dataProvider=new CActiveDataProvider('Attend', array(
+			'criteria'=>array(
+				'condition'=>'t.courseId=:cid AND t.courseStatus=:cstatus AND t.sectionGroup=:sec',
+	            'params'=>array(
+	                ':cid'=>$cid,
+	                ':cstatus'=>$cstatus,
+	                ':sec'=>$sec
+	            )
+	         )
+		));
+
+		$this->render('studycourse',array(
+			'dataProvider'=>$dataProvider,
+			'model'=>$model,
+			'cid'=>$cid,
+			'cstatus'=>$cstatus,
+			'sec'=>$sec,
+			'studentName'=>$studentName
+		));
+	}
+
+	public function actionFirststudycourse()
+	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('teacher'))) {
+			$this->redirect(array('site/index'));
+		}
+
+		$cid = $_GET['cid'];
+		$cstatus = $_GET['cstatus'];
+		$sec = $_GET['sec'];
+		$dataProvider = new CArrayDataProvider(array());
+
+		$model=new Attend;
+
+		if(isset($_GET['Attend'])){
+			$model->attributes=$_GET['Attend'];
+
+			$info = Yii::app()->db->createCommand()
+		    ->select('s.studentCode, s.studentName, s.studentLastname, c.courseCode, c.courseName,a.week,
+		    		 cstudy.sectionGroup, cstudy.courseStatus, a.studentId as id, a.attendStatus, a.timeIn, a.timeOut, a.day')
+		    ->from('tbl_coursestudy cstudy')
+		    ->join('tbl_course c', 'cstudy.courseId = c.id')
+			->leftJoin('tbl_attend a', 'c.id = a.courseId')
+			->join('tbl_student s', 'cstudy.studentId = s.id')
+			->where('c.id =:cid AND cstudy.sectionGroup=:sec AND cstudy.courseStatus=:cstatus AND 
+					a.day=:day AND a.sectionGroup=cstudy.sectionGroup AND cstudy.studentId = a.studentId');
+			$info->params = (array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus,':day'=>$model->day));
+
+			$info = $info->query();
+			
+			$courseInfo = $info->readAll();
+			$dataProvider = new CArrayDataProvider($courseInfo);
+		}
+
+		$this->render('firststudycourse',array(
+			'dataProvider'=>$dataProvider,
+			'model'=>$model,
+			'cid'=>$cid,
+			'cstatus'=>$cstatus,
+			'sec'=>$sec,
+		));
 
 	}
 
-
 	public function actionStudysemester()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('teacher'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('studysemester');
 
 	}
@@ -226,7 +365,75 @@ class TeacherController extends Controller
 
 	public function actionCourserequire()
 	{
-		$this->render('courserequire');
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('teacher'))) {
+			$this->redirect(array('site/index'));
+		}
 
+		$cid = $_GET['cid'];
+		$cstatus = $_GET['cstatus'];
+		//$courserule = Courserule::model()->find('courseId=:courseid',array(':courseid'=>$cid));
+
+		$dataProvider=new CActiveDataProvider('Courserule', array(
+			'criteria'=>array(
+				'condition'=>'t.courseId=:courseid AND t.courseStatus =:cstatus',
+	            'params'=>array(
+	                ':courseid'=>$cid,
+	                ':cstatus'=>$cstatus
+	            )
+	         )
+		));
+
+		$this->render('courserequire',array(
+			'dataProvider'=>$dataProvider,
+			'cid'=>$cid,
+			'cstatus'=>$cstatus
+		));
 	}
+
+
+	public function actionUpdaterule()
+	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('teacher'))) {
+			$this->redirect(array('site/index'));
+		}
+
+		if(isset($_POST['Courserule']))
+		{
+			date_default_timezone_set('Asia/Taipei');
+			$cstatus = $_GET['cstatus'];
+			$model=Courserule::model()->find('courseId=:cid AND courseStatus=:cstatus',
+				array(':cid'=>$_POST['Courserule']['courseId'],':cstatus'=>$cstatus));
+			$model->attributes = $_POST['Courserule'];
+			$model->save();
+			$dataProvider=new CActiveDataProvider('Courserule', array(
+				'criteria'=>array(
+					'condition'=>'t.courseId=:courseid AND t.courseStatus =:cstatus',
+		            'params'=>array(
+		                ':courseid'=>$model->courseId,
+		                ':cstatus'=>$model->courseStatus
+		            )
+		         )
+			));
+
+			$this->render('courserequire',array(
+				'dataProvider'=>$dataProvider,
+				'cid'=>$model->courseId,
+				'cstatus'=>$model->courseStatus
+			));
+			return;
+
+		}
+
+		$cid = $_GET['cid'];
+		$cstatus = $_GET['cstatus'];
+		$model = Courserule::model()->find('courseId=:codeid AND courseStatus=:cstatus', 
+			array(':codeid'=>$cid,':cstatus'=>$cstatus));
+
+		$this->render('updaterule',array(
+			'model'=>$model,
+		));
+	}
+
 }

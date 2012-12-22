@@ -17,6 +17,10 @@
 	<?php echo CHtml::encode($data->student->fullname); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('courseStatus')); ?>:</b>
+	<?php echo CHtml::encode($data->courseStatus); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('sectionGroup')); ?>:</b>
 	<?php echo CHtml::encode($data->sectionGroup); ?>
 	<br />

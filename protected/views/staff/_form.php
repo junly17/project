@@ -15,11 +15,16 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<?php if(!isset($update)): ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'staffCode'); ?>
 		<?php echo $form->textField($model,'staffCode',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'staffCode'); ?>
 	</div>
+	<?php else: ?>
+		<b><?php echo 'Staff Code: '; ?></b>
+		<?php echo $model->staffCode; ?>
+	<?php endif; ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'staffName'); ?>

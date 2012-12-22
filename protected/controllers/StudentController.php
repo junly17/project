@@ -28,7 +28,7 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow', 
-				'actions'=>array('home','studycourse'),
+				'actions'=>array('home','studycourse','semestercourse'),
 				'users'=>array('@'),
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -41,7 +41,7 @@ class StudentController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -55,6 +55,11 @@ class StudentController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -66,6 +71,11 @@ class StudentController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Student;
 		$user=new User;
 
@@ -76,12 +86,23 @@ class StudentController extends Controller
 		{
 			$model->attributes=$_POST['Student'];
 			$user->attributes=$_POST['User'];
-			$user->username = $model->studentCode;
-			$user->role = 'student';
-			$user->save();
-			$model->userId = $user->id;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$student = Student::model()->find('studentCode=:code', array(':code'=>$model->studentCode));
+
+			if($student!==null) 
+			{
+				$model->addError('studentCode', 'You have this studentID already');
+				$this->render('create', array('model'=>$model,'user'=>$user));
+				return;
+			}
+			else
+			{
+				$user->username = $model->studentCode;
+				$user->role = 'student';
+				$user->save();
+				$model->userId = $user->id;
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -96,6 +117,11 @@ class StudentController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -120,6 +146,11 @@ class StudentController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$student = $this->loadModel($id);
 		$userId = $student->userId;
 		$student->delete();
@@ -136,6 +167,11 @@ class StudentController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$dataProvider=new CActiveDataProvider('Student');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -147,6 +183,11 @@ class StudentController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Student('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Student']))
@@ -186,34 +227,88 @@ class StudentController extends Controller
 
 	public function actionHome()
 	{
-		$criteria = new CDbCriteria;
-		$criteria->condition='userId=:user';
-		$criteria->params=array(':user'=>Yii::app()->user->id);
-		$user = Student::model()->find($criteria);
-		$getStudent = $user->id;
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('student'))) {
+			$this->redirect(array('site/index'));
+		}
 
-		$dataProvider=new CActiveDataProvider('Coursestudy', array(
-			'pagination'=>array(
-		        'pageSize'=>10,
-		    ),
-		    'criteria'=>array(
-				'condition'=>'t.studentId = :user_id',
-	            'params'=>array(
-	                ':user_id'=>$getStudent,
-	            ),
-            	'together'=>true,
-            )
-		));
+		$scourse = Yii::app()->db->createCommand()
+		    ->select('cinfo.*, c.courseName, c.courseCode, s.name as sname, t.teacherName, t.teacherLastname')
+		    ->from('tbl_user u')
+		    ->join('tbl_student st', 'u.id = st.userId')
+		    ->join('tbl_coursestudy cstudy','cstudy.studentId = st.id')
+			->join('tbl_courseinfo cinfo', 'cinfo.courseId = cstudy.courseId AND cinfo.courseStatus = cstudy.courseStatus
+					AND cinfo.sectionGroup = cstudy.sectionGroup')
+			->join('tbl_teacher t','t.id = cinfo.teacherId')
+			->join('tbl_course c', 'cinfo.courseId = c.id')
+			->join('tbl_semester s', 'c.semesterId = s.id');
+
+		$semester;
+		if(isset($_GET['sid']))
+		{
+			$sid = $_GET['sid'];
+			$semester = Semester::model()->findByPk($sid);
+			$scourse->where('s.id = :sid AND u.id =:user',array(':user'=>Yii::app()->user->id, ':sid'=>$sid));
+		}
+		else
+		{
+			$semester = Semester::model()->find('active=1');
+		    $scourse->where('s.active = 1 AND u.id =:user',array(':user'=>Yii::app()->user->id));
+		}
+		
+		$scourse = $scourse->query();
+		
+		$courseInfo = $scourse->readAll();
+		$dataProvider = new CArrayDataProvider($courseInfo);
+
+		$allSemester = Semester::model()->findAll();
 
 		$this->render('home',array(
 			'dataProvider'=>$dataProvider,
+			'semester'=>$semester,
+			'allSemester'=>$allSemester
 		));
 	}
 
 
 	public function actionStudycourse()
 	{
-		$this->render('studycourse');
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('student'))) {
+			$this->redirect(array('site/index'));
+		}
 
+		$student = Student::model()->find('userId=:id', array(':id'=>Yii::app()->user->id));
+		
+		$cid = $_GET['cid'];
+		$cstatus = $_GET['cstatus'];
+		$sec = $_GET['sec'];
+
+		$dataProvider=new CActiveDataProvider('Attend', array(
+			'criteria'=>array(
+				'condition'=>'t.courseId=:cid AND t.courseStatus=:cstatus AND t.studentId=:sid AND t.sectionGroup=:sec',
+	            'params'=>array(
+	                ':cid'=>$cid,
+	                ':cstatus'=>$cstatus,
+	                ':sid'=>$student->id,
+	                ':sec'=>$sec
+	            )
+	         )
+		));
+
+		$this->render('studycourse',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+
+	public function actionSemestercourse()
+	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('student'))) {
+			$this->redirect(array('site/index'));
+		}
+		
+		$this->render('semestercourse');
 	}
 }

@@ -12,11 +12,6 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'courseCode'); ?>
 		<?php echo $form->textField($model,'courseCode',array('size'=>5,'maxlength'=>5)); ?>
 	</div>
@@ -33,7 +28,9 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'semesterId'); ?>
-		<?php echo $form->textField($model,'semesterId'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'semesterId', CHtml::listData( Semester::model()->findAll(), 'id', 'name' ));
+		?>
 	</div>
 
 	<div class="row buttons">

@@ -3,7 +3,6 @@
 /* @var $model Semester */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Semesters'=>array('index'),
 	$model->name,
 );
@@ -28,5 +27,9 @@ $this->menu=array(
 		'openDate',
 		'endDate',
 		'name',
+		array(
+			'name'=>'active',
+			'value'=>$model->activename,
+		),
 	),
 )); ?>

@@ -18,6 +18,7 @@
  * The followings are the available model relations:
  * @property Course $course
  * @property Teacher $teacher
+ * @property Coursestudy[] $coursestudies
  */
 class Courseinfo extends CActiveRecord
 {
@@ -57,6 +58,7 @@ class Courseinfo extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, courseId, courseStatus, sectionGroup, timeBegin, timeOut, build, room, studyDay, teacherId', 'safe', 'on'=>'search'),
+			array('timeBegin,timeOut', 'type', 'type' => 'time', 'message' => '{attribute} is incorrect', 'timeFormat' => 'hh:mm:ss',),
 		);
 	}
 
@@ -70,6 +72,7 @@ class Courseinfo extends CActiveRecord
 		return array(
 			'course' => array(self::BELONGS_TO, 'Course', 'courseId'),
 			'teacher' => array(self::BELONGS_TO, 'Teacher', 'teacherId'),
+			'coursestudies' => array(self::HAS_MANY, 'Coursestudy', 'courseinfoId'),
 		);
 	}
 

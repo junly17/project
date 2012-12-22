@@ -3,7 +3,6 @@
 /* @var $model Student */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Students'=>array('index'),
 	'Manage',
 );

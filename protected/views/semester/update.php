@@ -3,7 +3,6 @@
 /* @var $model Semester */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Semesters'=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
 	'Update',

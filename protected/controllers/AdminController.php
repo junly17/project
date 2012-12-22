@@ -4,6 +4,10 @@ class AdminController extends Controller
 {
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('admin'))) {
+			$this->redirect(array('site/index'));
+		}
 		$this->render('index');
 	}
 

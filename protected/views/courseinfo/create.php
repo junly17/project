@@ -3,7 +3,6 @@
 /* @var $model Courseinfo */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Courseinfos'=>array('index'),
 	'Create',
 );

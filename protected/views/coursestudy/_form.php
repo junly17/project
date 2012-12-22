@@ -32,6 +32,14 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'courseStatus'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'courseStatus',array('Lecture'=>'Lecture','Laboratory'=>'Laboratory'));
+		?>
+		<?php echo $form->error($model,'courseStatus'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'sectionGroup'); ?>
 		<?php echo $form->textField($model,'sectionGroup',array('size'=>6,'maxlength'=>6)); ?>
 		<?php echo $form->error($model,'sectionGroup'); ?>

@@ -3,7 +3,6 @@
 /* @var $model Coursestudy */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Coursestudies'=>array('index'),
 	'Manage',
 );
@@ -55,6 +54,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'studentId',
 			'value'=>'$data->student->fullname',
 		),
+		'courseStatus',
 		'sectionGroup',
 		array(
 			'class'=>'CButtonColumn',

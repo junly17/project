@@ -3,7 +3,6 @@
 /* @var $model Coursestudy */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Coursestudies'=>array('index'),
 	$model->id,
 );
@@ -31,6 +30,7 @@ $this->menu=array(
 			'name'=>'studentId',
 			'value'=>$model->student->fullname,
 		),
+		'courseStatus',
 		'sectionGroup',
 	),
 )); ?>

@@ -37,7 +37,7 @@ class StaffController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,6 +51,11 @@ class StaffController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +67,11 @@ class StaffController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Staff;
 		$user=new User;
 
@@ -72,12 +82,23 @@ class StaffController extends Controller
 		{
 			$model->attributes=$_POST['Staff'];
 			$user->attributes=$_POST['User'];
-			$user->username = $model->staffCode;
-			$user->role = 'staff';
-			$user->save();
-			$model->userId = $user->id;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$staff = Staff::model()->find('staffCode=:code', array(':code'=>$model->staffCode));
+
+			if($staff!==null) 
+			{
+				$model->addError('staffCode', 'You have this staffID already');
+				$this->render('create', array('model'=>$model,'user'=>$user));
+				return;
+			}
+			else
+			{
+				$user->username = $model->staffCode;
+				$user->role = 'staff';
+				$user->save();
+				$model->userId = $user->id;
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -92,6 +113,11 @@ class StaffController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -116,6 +142,11 @@ class StaffController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$staff = $this->loadModel($id);
 		$userId = $staff->userId;
 		$staff->delete();
@@ -131,6 +162,11 @@ class StaffController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$dataProvider=new CActiveDataProvider('Staff');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -142,6 +178,11 @@ class StaffController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Staff('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Staff']))
@@ -180,6 +221,11 @@ class StaffController extends Controller
 
 	public function actionHome()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$this->render('home');
 	}
 }

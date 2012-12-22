@@ -8,9 +8,12 @@
  * @property integer $courseId
  * @property integer $studentId
  * @property string $sectionGroup
+ * @property integer $courseinfoId
+ * @property string $courseStatus
  *
  * The followings are the available model relations:
  * @property Course $course
+ * @property Courseinfo $courseinfo
  * @property Student $student
  */
 class Coursestudy extends CActiveRecord
@@ -41,12 +44,13 @@ class Coursestudy extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('courseId, studentId, sectionGroup', 'required'),
-			array('courseId, studentId', 'numerical', 'integerOnly'=>true),
+			array('courseId, studentId, sectionGroup, courseStatus', 'required'),
+			array('courseId, studentId, courseinfoId', 'numerical', 'integerOnly'=>true),
 			array('sectionGroup', 'length', 'max'=>6),
+			array('courseStatus', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, courseId, studentId, sectionGroup', 'safe', 'on'=>'search'),
+			array('id, courseId, studentId, sectionGroup, courseinfoId, courseStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +63,7 @@ class Coursestudy extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'course' => array(self::BELONGS_TO, 'Course', 'courseId'),
+			'courseinfo' => array(self::BELONGS_TO, 'Courseinfo', 'courseinfoId'),
 			'student' => array(self::BELONGS_TO, 'Student', 'studentId'),
 		);
 	}
@@ -73,6 +78,8 @@ class Coursestudy extends CActiveRecord
 			'courseId' => 'Course',
 			'studentId' => 'Student',
 			'sectionGroup' => 'Section Group',
+			'courseinfoId' => 'Courseinfo',
+			'courseStatus' => 'Course Status',
 		);
 	}
 
@@ -91,6 +98,8 @@ class Coursestudy extends CActiveRecord
 		$criteria->compare('courseId',$this->courseId);
 		$criteria->compare('studentId',$this->studentId);
 		$criteria->compare('sectionGroup',$this->sectionGroup,true);
+		$criteria->compare('courseinfoId',$this->courseinfoId);
+		$criteria->compare('courseStatus',$this->courseStatus,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

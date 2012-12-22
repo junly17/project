@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->course->fullname); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('courseStatus')); ?>:</b>
+	<?php echo CHtml::encode($data->courseStatus); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('lateTime')); ?>:</b>
 	<?php echo CHtml::encode($data->lateTime); ?>
 	<br />

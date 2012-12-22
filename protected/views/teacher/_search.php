@@ -12,11 +12,6 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'teacherCode'); ?>
 		<?php echo $form->textField($model,'teacherCode',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
@@ -33,12 +28,9 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'teacherStatus'); ?>
-		<?php echo $form->textField($model,'teacherStatus',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'userId'); ?>
-		<?php echo $form->textField($model,'userId'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'teacherStatus',array('Taught'=>'Taught','Retire'=>'Retire'));
+		?>
 	</div>
 
 	<div class="row buttons">

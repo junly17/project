@@ -12,13 +12,17 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->label($model,'courseId'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'courseId', CHtml::listData( Course::model()->findAll(), 'id', 'fullname' ));
+		?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'courseId'); ?>
-		<?php echo $form->textField($model,'courseId'); ?>
+		<?php echo $form->label($model,'courseStatus'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'courseStatus',array('Lecture'=>'Lecture','Laboratory'=>'Laboratory'));
+		?>
 	</div>
 
 	<div class="row">

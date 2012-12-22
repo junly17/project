@@ -3,7 +3,6 @@
 /* @var $model Courserule */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Courserules'=>array('index'),
 	$model->id,
 );
@@ -27,6 +26,7 @@ $this->menu=array(
 			'name'=>'courseId',
 			'value'=>$model->course->fullname,
 		),
+		'courseStatus',
 		'lateTime',
 		'absenceTime',
 		'condition',

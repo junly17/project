@@ -37,7 +37,7 @@ class SemesterController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,6 +51,11 @@ class SemesterController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +67,11 @@ class SemesterController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=new Semester;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -70,8 +80,28 @@ class SemesterController extends Controller
 		if(isset($_POST['Semester']))
 		{
 			$model->attributes=$_POST['Semester'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$seme = Semester::model()->find('semester=:semester', array(':semester'=>$model->semester));
+
+			if($seme!==null) 
+			{
+				if($seme->semester==$model->semester && $seme->year==$model->year)
+				{
+					$model->addError('semester', 'You have this semester and year already');
+					$model->addError('year', 'You have this semester and year already');
+					$this->render('create', array('model'=>$model));
+					return;
+				}
+				else
+				{
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
+				}
+			}
+			else
+			{
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -86,6 +116,11 @@ class SemesterController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -94,8 +129,28 @@ class SemesterController extends Controller
 		if(isset($_POST['Semester']))
 		{
 			$model->attributes=$_POST['Semester'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$seme = Semester::model()->find('semester=:semester', array(':semester'=>$model->semester));
+
+			if($seme!==null) 
+			{
+				if($seme->semester==$model->semester && $seme->year==$model->year && $seme->id!==$model->id)
+				{
+					$model->addError('semester', 'You have this semester and year already');
+					$model->addError('year', 'You have this semester and year already');
+					$this->render('create', array('model'=>$model));
+					return;
+				}
+				else
+				{
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
+				}
+			}
+			else
+			{
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
@@ -110,6 +165,11 @@ class SemesterController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -122,6 +182,11 @@ class SemesterController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+
 		$dataProvider=new CActiveDataProvider('Semester');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -133,6 +198,11 @@ class SemesterController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$role = Yii::app()->user->role;
+		if(!in_array($role, array('staff', 'admin'))) {
+			$this->redirect(array('site/index'));
+		}
+		
 		$model=new Semester('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Semester']))

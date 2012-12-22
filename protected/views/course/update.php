@@ -3,7 +3,6 @@
 /* @var $model Course */
 
 $this->breadcrumbs=array(
-	'Home'=>array('admin/index'),
 	'Courses'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
@@ -19,4 +18,4 @@ $this->menu=array(
 
 <h1>Update Course <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,'update'=>true)); ?>
