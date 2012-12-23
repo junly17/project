@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Home'=>array('teacher/home'),
-	'Coursestudy'
+	'Coursestudy'=>array('teacher/studycourse','cid'=>$cid,'cstatus'=>$cstatus,'sec'=>$sec)
 );
 ?>
 
@@ -26,7 +26,8 @@ $this->breadcrumbs=array(
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'studycourse-grid',
-	'dataProvider'=>$model->searchCourse($cid,$cstatus,$sec,$studentName),
+	'dataProvider'=>$model->searchCourse($cid,$cstatus,$sec,$studentName,$studentLastname),
+	'filter'=>$model,
 	'columns'=>array(
 		array(
 			'name'=>'studentId',

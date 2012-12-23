@@ -118,7 +118,7 @@ class Attend extends CActiveRecord
 	}
 
 
-	public function searchCourse($cid,$cstatus,$sec,$studentName)
+	public function searchCourse($cid,$cstatus,$sec,$studentName,$studentLastname)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -131,8 +131,12 @@ class Attend extends CActiveRecord
 	                ':sec'=>$sec
 	            );
 		$criteria->join = "JOIN tbl_student s ON s.id = t.studentId";
+
 		if($studentName != ""){
 			$criteria->compare('s.studentName',$studentName,true);
+		}
+		if($studentLastname != ""){
+			$criteria->compare('s.studentLastname',$studentLastname,true);
 		}
 
 		$criteria->compare('timeIn',$this->timeIn,true);

@@ -7,14 +7,8 @@
 	<?php endforeach; ?>
 </ul>
 
-<?php
-$this->menu=array(
-	array('label'=>'สรุปผลรายภาคการศึกษา', 'url'=>array('semestercourse')),
-);
-?>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_viewhome',
 )); ?>
-

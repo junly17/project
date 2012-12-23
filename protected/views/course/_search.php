@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'numOfweek'); ?>
+		<?php echo $form->label($model,'numOfWeek'); ?>
 		<?php echo $form->textField($model,'numOfweek'); ?>
 	</div>
 

@@ -277,9 +277,12 @@ class TeacherController extends Controller
 		$cstatus = $_GET['cstatus'];
 		$sec = $_GET['sec'];
 		$studentName = "";
+		$studentLastname = "";
 
 		if (isset($_GET['studentName']))
 			$studentName = $_GET['studentName'];
+		if (isset($_GET['studentLastname']))
+			$studentLastname = $_GET['studentLastname'];
 		
 		$model=new Attend('searchCourse');
 		$model->unsetAttributes();  // clear any default values
@@ -303,7 +306,8 @@ class TeacherController extends Controller
 			'cid'=>$cid,
 			'cstatus'=>$cstatus,
 			'sec'=>$sec,
-			'studentName'=>$studentName
+			'studentName'=>$studentName,
+			'studentLastname'=>$studentLastname
 		));
 	}
 
@@ -317,27 +321,39 @@ class TeacherController extends Controller
 		$cid = $_GET['cid'];
 		$cstatus = $_GET['cstatus'];
 		$sec = $_GET['sec'];
-		$dataProvider = new CArrayDataProvider(array());
+		
+		$user = Teacher::model()->find('userId=:user',array(':user'=>Yii::app()->user->id));
+		$cinfo = Courseinfo::model()->find('teacherID=:tid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
+			 array(':tid'=>$user->id,':cid'=>$cid,':cstatus'=>$cstatus,':sec'=>$sec));
 
+		$dataProvider = new CArrayDataProvider(array());
 		$model=new Attend;
 
 		if(isset($_GET['Attend'])){
 			$model->attributes=$_GET['Attend'];
 
-			$info = Yii::app()->db->createCommand()
-		    ->select('s.studentCode, s.studentName, s.studentLastname, c.courseCode, c.courseName,a.week,
-		    		 cstudy.sectionGroup, cstudy.courseStatus, a.studentId as id, a.attendStatus, a.timeIn, a.timeOut, a.day')
-		    ->from('tbl_coursestudy cstudy')
-		    ->join('tbl_course c', 'cstudy.courseId = c.id')
-			->leftJoin('tbl_attend a', 'c.id = a.courseId')
-			->join('tbl_student s', 'cstudy.studentId = s.id')
-			->where('c.id =:cid AND cstudy.sectionGroup=:sec AND cstudy.courseStatus=:cstatus AND 
-					a.day=:day AND a.sectionGroup=cstudy.sectionGroup AND cstudy.studentId = a.studentId');
-			$info->params = (array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus,':day'=>$model->day));
+			$sql = "select sall.studentId, s.*, sattend.timeIn, sattend.timeOut, sattend.week, coalesce(sattend.attendStatus, 'Absent') as attendStatus".
+					" from (select cs.studentId".
+						" from tbl_coursestudy cs".
+						" join tbl_student s on cs.studentId = s.id".
+						" where cs.courseId = :cid1".
+						" and cs.sectionGroup = :sec1".
+						" and cs.courseStatus = :cstatus1) sall".
+					" left outer join (select cs.studentId, a.timeIn, a.timeOut, a.week, a.attendStatus".
+						" from tbl_coursestudy cs".
+						" join tbl_attend a on a.coursestudyId = cs.id".
+						" where cs.courseId = :cid".
+						" and cs.sectionGroup = :sec".
+						" and cs.courseStatus = :cstatus".
+						" and a.day = :day) sattend on sall.studentId = sattend.studentId".
+						" join tbl_student s on sall.studentId = s.id";
 
+			$info = Yii::app()->db->createCommand()->setText($sql);
+			$info->params = array(':cid1'=>$cid,':sec1'=>$sec,':cstatus1'=>$cstatus,
+								':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus,':day'=>$model->day);
 			$info = $info->query();
-			
 			$courseInfo = $info->readAll();
+
 			$dataProvider = new CArrayDataProvider($courseInfo);
 		}
 
@@ -347,6 +363,7 @@ class TeacherController extends Controller
 			'cid'=>$cid,
 			'cstatus'=>$cstatus,
 			'sec'=>$sec,
+			'cinfo'=>$cinfo
 		));
 
 	}
@@ -358,8 +375,80 @@ class TeacherController extends Controller
 			$this->redirect(array('site/index'));
 		}
 
-		$this->render('studysemester');
+		$cid = $_GET['cid'];
+		$cstatus = $_GET['cstatus'];
+		$sec = $_GET['sec'];
+		
+		$user = Teacher::model()->find('userId=:user',array(':user'=>Yii::app()->user->id));
+		$cinfo = Courseinfo::model()->find('teacherID=:tid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
+			 array(':tid'=>$user->id,':cid'=>$cid,':cstatus'=>$cstatus,':sec'=>$sec));
 
+		$rule = Courserule::model()->find('courseId=:cid AND courseStatus=:cstatus',
+			 array(':cid'=>$cid,':cstatus'=>$cstatus));
+
+		$total = "select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec";
+
+		$ctotal = Yii::app()->db->createCommand()->setText($total);
+		$ctotal->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus);
+		$ctotal = $ctotal->query();
+		$courseTotal = $ctotal->readAll();
+
+		$sql = "select attend_all.studentId as id,
+					s.studentCode, s.studentName, s.studentLastname,
+					(attend_all.attend - coalesce(attend_late.late, 0)) as attend,
+					coalesce(attend_late.late, 0) as late,
+					attend_all.attend as total,
+					(course.total - attend_all.attend) as absent,
+					course.total as course_total,
+					attend_all.attend >= rule.condition/100*course.total as qualified".
+				" from (select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					group by a.studentId) attend_all".
+				" left outer join 
+					(select a.studentId , count(a.id) as late
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Late'
+					group by a.studentId) attend_late
+					on attend_all.studentId = attend_late.studentId".
+				" join
+					(select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec) course
+					join tbl_courserule rule 
+					on attend_all.courseId = rule.courseId and attend_all.courseStatus = rule.courseStatus
+					join tbl_student s on attend_all.studentId = s.id";
+
+
+		$info = Yii::app()->db->createCommand()->setText($sql);
+		$info->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus);
+		$info = $info->query();
+		$courseInfo = $info->readAll();
+
+		$dataProvider = new CArrayDataProvider($courseInfo);
+
+		$this->render('studysemester',array(
+			'dataProvider'=>$dataProvider,
+			'cid'=>$cid,
+			'cstatus'=>$cstatus,
+			'sec'=>$sec,
+			'cinfo'=>$cinfo,
+			'rule'=>$rule,
+			'courseTotal'=>$courseTotal
+		));
 	}
 
 

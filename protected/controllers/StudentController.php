@@ -28,7 +28,7 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow', 
-				'actions'=>array('home','studycourse','semestercourse'),
+				'actions'=>array('home','studycourse'),
 				'users'=>array('@'),
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -284,31 +284,32 @@ class StudentController extends Controller
 		$cstatus = $_GET['cstatus'];
 		$sec = $_GET['sec'];
 
-		$dataProvider=new CActiveDataProvider('Attend', array(
-			'criteria'=>array(
-				'condition'=>'t.courseId=:cid AND t.courseStatus=:cstatus AND t.studentId=:sid AND t.sectionGroup=:sec',
-	            'params'=>array(
-	                ':cid'=>$cid,
-	                ':cstatus'=>$cstatus,
-	                ':sid'=>$student->id,
-	                ':sec'=>$sec
-	            )
-	         )
-		));
+		$sql = "select distinct a.day, sattend.studentCode as id,
+				coalesce(sattend.timeIn,'-') as 'timeIn',
+				coalesce(sattend.timeOut,'-') as 'timeOut',
+				coalesce(sattend.attendStatus, 'Absent') as 'attendStatus',
+				coalesce(sattend.week,'-') as 'week'".
+					" from tbl_attend a
+						left outer join (
+						select a.day, s.studentCode, a.timeIn, a.timeOut,a.attendStatus,a.week
+						from tbl_attend a
+						join tbl_student s on a.studentId = s.id
+						where s.userId = 13
+					) sattend on sattend.day = a.day
+				where a.courseId = :cid
+				and a.courseStatus = :cstatus
+				and a.sectionGroup = :sec";
+
+		$info = Yii::app()->db->createCommand()->setText($sql);
+		$info->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus);
+		$info = $info->query();
+		$courseInfo = $info->readAll();
+
+		$dataProvider = new CArrayDataProvider($courseInfo);
 
 		$this->render('studycourse',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
 
-
-	public function actionSemestercourse()
-	{
-		$role = Yii::app()->user->role;
-		if(!in_array($role, array('student'))) {
-			$this->redirect(array('site/index'));
-		}
-		
-		$this->render('semestercourse');
-	}
 }

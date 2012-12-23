@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Students'=>array('index'),
-	'Manage',
+	'Manage'=>array('admin'),
 );
 
 $this->menu=array(
