@@ -1,4 +1,4 @@
-<h1>รายวิชาที่เรียน</h1>
+<h1 align="center">รายวิชาที่เรียน</h1>
 
 <h2><?php echo $semester->name; ?></h2>
 <ul>

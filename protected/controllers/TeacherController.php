@@ -332,21 +332,26 @@ class TeacherController extends Controller
 		if(isset($_GET['Attend'])){
 			$model->attributes=$_GET['Attend'];
 
-			$sql = "select sall.studentId, s.*, sattend.timeIn, sattend.timeOut, sattend.week, coalesce(sattend.attendStatus, 'Absent') as attendStatus".
-					" from (select cs.studentId".
-						" from tbl_coursestudy cs".
-						" join tbl_student s on cs.studentId = s.id".
-						" where cs.courseId = :cid1".
-						" and cs.sectionGroup = :sec1".
-						" and cs.courseStatus = :cstatus1) sall".
-					" left outer join (select cs.studentId, a.timeIn, a.timeOut, a.week, a.attendStatus".
-						" from tbl_coursestudy cs".
-						" join tbl_attend a on a.coursestudyId = cs.id".
-						" where cs.courseId = :cid".
-						" and cs.sectionGroup = :sec".
-						" and cs.courseStatus = :cstatus".
-						" and a.day = :day) sattend on sall.studentId = sattend.studentId".
-						" join tbl_student s on sall.studentId = s.id";
+			$sql = "select studentall.studentId, s.*, coalesce(studentattend.timeIn, '-') as timeIn, 
+						coalesce(studentattend.timeOut, '-') as timeOut, studentattend.week, 
+						coalesce(studentattend.attendStatus, 'Absent') as attendStatus
+					from 
+						(select cs.studentId
+						from tbl_coursestudy cs
+						join tbl_student s on cs.studentId = s.id
+						where cs.courseId = :cid1
+						and cs.sectionGroup = :sec1
+						and cs.courseStatus = :cstatus1) studentall
+					left outer join 
+						(select cs.studentId, a.timeIn, a.timeOut, a.week, a.attendStatus
+						from tbl_coursestudy cs
+					join tbl_attend a on a.coursestudyId = cs.id
+						where cs.courseId = :cid
+						and cs.sectionGroup = :sec
+						and cs.courseStatus = :cstatus
+						and a.day = :day) studentattend 
+						on studentall.studentId = studentattend.studentId
+					join tbl_student s on studentall.studentId = s.id";
 
 			$info = Yii::app()->db->createCommand()->setText($sql);
 			$info->params = array(':cid1'=>$cid,':sec1'=>$sec,':cstatus1'=>$cstatus,
@@ -399,20 +404,21 @@ class TeacherController extends Controller
 
 		$sql = "select attend_all.studentId as id,
 					s.studentCode, s.studentName, s.studentLastname,
-					(attend_all.attend - coalesce(attend_late.late, 0)) as attend,
+					(attend_all.attend - (coalesce(attend_late.late, 0) + coalesce(attend_absent.absent, 0))) as onTime,
 					coalesce(attend_late.late, 0) as late,
-					attend_all.attend as total,
-					(course.total - attend_all.attend) as absent,
-					course.total as course_total,
-					attend_all.attend >= rule.condition/100*course.total as qualified".
-				" from (select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					(attend_all.attend - coalesce(attend_absent.absent, 0))as totalAttend,
+					(course.total - attend_all.attend) + coalesce(attend_absent.absent, 0) as absent,
+					course.total as courseTotal,
+					(attend_all.attend - coalesce(attend_absent.absent, 0)) >= rule.condition/100*course.total as qualified
+				from 
+					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
 					from tbl_coursestudy cs
 					join tbl_attend a on a.courseStudyId = cs.id
 					where cs.courseId = :cid
 					and cs.courseStatus = :cstatus
 					and cs.sectionGroup = :sec
-					group by a.studentId) attend_all".
-				" left outer join 
+					group by a.studentId) attend_all
+				left outer join 
 					(select a.studentId , count(a.id) as late
 					from tbl_coursestudy cs
 					join tbl_attend a on a.courseStudyId = cs.id
@@ -421,16 +427,26 @@ class TeacherController extends Controller
 					and cs.sectionGroup = :sec
 					and a.attendStatus = 'Late'
 					group by a.studentId) attend_late
-					on attend_all.studentId = attend_late.studentId".
-				" join
+					on attend_all.studentId = attend_late.studentId
+				left outer join 
+					(select a.studentId , count(a.id) as absent
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Absent'
+					group by a.studentId) attend_absent
+					on attend_absent.studentId = attend_all.studentId
+				join
 					(select count(distinct a.day) as total
 					from tbl_attend a 
 					where a.courseId = :cid
 					and a.courseStatus = :cstatus
 					and a.sectionGroup = :sec) course
-					join tbl_courserule rule 
+				join tbl_courserule rule 
 					on attend_all.courseId = rule.courseId and attend_all.courseStatus = rule.courseStatus
-					join tbl_student s on attend_all.studentId = s.id";
+				join tbl_student s on attend_all.studentId = s.id";
 
 
 		$info = Yii::app()->db->createCommand()->setText($sql);

@@ -95,15 +95,34 @@ class AttendController extends Controller
 				return;
 			}
 
-			if($model->timeIn === '00:00:00')
-				$model->attendStatus = 'Absent';
-			else if(CDateTimeParser::parse($time->lateTime, 'hh:mm:ss') < CDateTimeParser::parse($model->timeIn, 'hh:mm:ss')
-					&& CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
-				$model->attendStatus = 'Late';
-			else if(CDateTimeParser::parse($time->lateTime, 'hh:mm:ss') >= CDateTimeParser::parse($model->timeIn, 'hh:mm:ss'))
+			if($time->lateTime === '00:00:00' && $time->absenceTime === '00:00:00'){
 				$model->attendStatus = 'Attend';
-			else
-				$model->attendStatus = 'Absent';
+			}
+			else if($time->lateTime === '00:00:00' && $time->absenceTime !== '00:00:00'){
+				if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Attend';
+				else
+					$model->attendStatus = 'Absent';
+			}
+			else if($time->lateTime !== '00:00:00' && $time->absenceTime === '00:00:00'){
+				if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->lateTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Attend';
+				else
+					$model->attendStatus = 'Late';
+			}
+			else if($time->lateTime !== '00:00:00' && $time->absenceTime !== '00:00:00'){
+				if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->lateTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Attend';
+				else if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') > CDateTimeParser::parse($time->lateTime, 'hh:mm:ss')
+						&& CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Late';
+				else if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') > CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Absent';
+			}
+
+			$cs = Coursestudy::model()->find('courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec AND studentId=:stid',
+					 array(':course'=>$model->courseId,':cstatus'=>$model->courseStatus,':sec'=>$model->sectionGroup,':stid'=>$model->studentId));
+			$model->coursestudyId = $cs->id;
 
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -149,15 +168,30 @@ class AttendController extends Controller
 				return;
 			}
 
-			if($model->timeIn === '00:00:00')
-				$model->attendStatus = 'Absent';
-			else if(CDateTimeParser::parse($time->lateTime, 'hh:mm:ss') < CDateTimeParser::parse($model->timeIn, 'hh:mm:ss')
-					&& CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
-				$model->attendStatus = 'Late';
-			else if(CDateTimeParser::parse($time->lateTime, 'hh:mm:ss') >= CDateTimeParser::parse($model->timeIn, 'hh:mm:ss'))
+			if($time->lateTime === '00:00:00' && $time->absenceTime === '00:00:00'){
 				$model->attendStatus = 'Attend';
-			else
-				$model->attendStatus = 'Absent';
+			}
+			else if($time->lateTime === '00:00:00' && $time->absenceTime !== '00:00:00'){
+				if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Attend';
+				else
+					$model->attendStatus = 'Absent';
+			}
+			else if($time->lateTime !== '00:00:00' && $time->absenceTime === '00:00:00'){
+				if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->lateTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Attend';
+				else
+					$model->attendStatus = 'Late';
+			}
+			else if($time->lateTime !== '00:00:00' && $time->absenceTime !== '00:00:00'){
+				if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->lateTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Attend';
+				else if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') > CDateTimeParser::parse($time->lateTime, 'hh:mm:ss')
+						&& CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') <= CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Late';
+				else if(CDateTimeParser::parse($model->timeIn, 'hh:mm:ss') > CDateTimeParser::parse($time->absenceTime, 'hh:mm:ss'))
+					$model->attendStatus = 'Absent';
+			}
 
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

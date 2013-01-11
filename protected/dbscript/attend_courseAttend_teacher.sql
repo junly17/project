@@ -1,4 +1,6 @@
-select s.studentCode, s.studentName, s.studentLastname, c.courseCode, c.courseName, cstudy.sectionGroup, cstudy.courseStatus, a.studentId, a.attendStatus, a.timeIn, a.timeOut, a.day
+select s.studentCode, s.studentName, s.studentLastname, c.courseCode, 
+c.courseName, cstudy.sectionGroup, cstudy.courseStatus, a.studentId, 
+a.attendStatus, a.timeIn, a.timeOut, a.day
 from tbl_coursestudy cstudy
 join tbl_course c on cstudy.courseId = c.id
 join tbl_attend a on c.id = a.courseId

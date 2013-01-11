@@ -284,31 +284,85 @@ class StudentController extends Controller
 		$cstatus = $_GET['cstatus'];
 		$sec = $_GET['sec'];
 
+		$cstudy = Coursestudy::model()->find('studentId=:sid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
+			 array(':sid'=>$student->id,':cid'=>$cid,':cstatus'=>$cstatus,':sec'=>$sec));
+		$cinfo = Courseinfo::model()->find('id=:csid',array(':csid'=>$cstudy->courseinfoId));
+
+		$rule = Courserule::model()->find('courseId=:cid AND courseStatus=:cstatus',
+			 array(':cid'=>$cid,':cstatus'=>$cstatus));
+
+		$total = "select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec";
+
+		$ctotal = Yii::app()->db->createCommand()->setText($total);
+		$ctotal->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus);
+		$ctotal = $ctotal->query();
+		$courseTotal = $ctotal->readAll();
+
 		$sql = "select distinct a.day, sattend.studentCode as id,
-				coalesce(sattend.timeIn,'-') as 'timeIn',
-				coalesce(sattend.timeOut,'-') as 'timeOut',
-				coalesce(sattend.attendStatus, 'Absent') as 'attendStatus',
-				coalesce(sattend.week,'-') as 'week'".
-					" from tbl_attend a
-						left outer join (
-						select a.day, s.studentCode, a.timeIn, a.timeOut,a.attendStatus,a.week
-						from tbl_attend a
-						join tbl_student s on a.studentId = s.id
-						where s.userId = 13
-					) sattend on sattend.day = a.day
-				where a.courseId = :cid
-				and a.courseStatus = :cstatus
-				and a.sectionGroup = :sec";
+					coalesce(sattend.timeIn,'-') as 'timeIn',
+					coalesce(sattend.timeOut,'-') as 'timeOut',
+					coalesce(sattend.attendStatus, 'Absent') as 'attendStatus',
+					coalesce(sattend.week,'-') as 'week'
+					from tbl_attend a
+				left outer join (
+					select a.day, s.studentCode, a.timeIn, a.timeOut,a.attendStatus,a.week
+					from tbl_attend a
+					join tbl_student s on a.studentId = s.id
+					where s.id = :user) sattend on sattend.day = a.day
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec";
 
 		$info = Yii::app()->db->createCommand()->setText($sql);
-		$info->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus);
+		$info->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus,':user'=>$student->id);
 		$info = $info->query();
 		$courseInfo = $info->readAll();
 
 		$dataProvider = new CArrayDataProvider($courseInfo);
 
+		$quli = "select (attend_all.attend - coalesce(attend_absent.absent, 0)) >= rule.condition/100*course.total as qualified
+				from 
+					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.studentId = :user) attend_all
+				join
+					(select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec) course
+				join 
+					(select a.studentId , count(a.id) as absent
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Absent'
+					and a.studentId = :user) attend_absent
+				join tbl_courserule rule 
+					on attend_all.courseId = rule.courseId and attend_all.courseStatus = rule.courseStatus";
+
+
+		$qualify = Yii::app()->db->createCommand()->setText($quli);
+		$qualify->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus,':user'=>$student->id);
+		$qualify = $qualify->query();
+		$qualifyValue = $qualify->readAll();
+
 		$this->render('studycourse',array(
 			'dataProvider'=>$dataProvider,
+			'cinfo'=>$cinfo,
+			'rule'=>$rule,
+			'qualify'=>$qualifyValue,
+			'courseTotal'=>$courseTotal
 		));
 	}
 

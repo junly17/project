@@ -3903,3 +3903,1478 @@ Stack trace:
 REQUEST_URI=/project/index.php?r=student/studycourse&cid=2&cstatus=Lecture&sec=500001
 HTTP_REFERER=http://localhost/project/index.php?r=student/home
 ---
+2012/12/29 18:22:26 [error] [exception.CException] exception 'CException' with message 'Property "Courserule.cid" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(144): CComponent->__get('cid')
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CModel.php(593): CActiveRecord->__get('cid')
+#2 C:\Zend\Apache2\htdocs\project\protected\views\teacher\_viewcourserequire.php(25): CModel->offsetGet('cid')
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(131): require('C:\Zend\Apache2...')
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, false)
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CListView.php(260): CBaseController->renderFile('C:\Zend\Apache2...', Array)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CBaseListView.php(161): CListView->renderItems()
+#7 [internal function]: CBaseListView->renderSection(Array)
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CBaseListView.php(144): preg_replace_callback('/{(\w+)}/', Array, '{summary}?{sort...')
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CBaseListView.php(129): CBaseListView->renderContent()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(174): CBaseListView->run()
+#11 C:\Zend\Apache2\htdocs\project\protected\views\teacher\courserequire.php(18): CBaseController->widget('zii.widgets.CLi...', Array)
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CController->renderPartial('courserequire', Array, true)
+#16 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(481): CController->render('courserequire', Array)
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionCourserequire()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#22 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#23 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#24 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#25 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#26 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('courserequire')
+#27 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/courser...')
+#28 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#29 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#30 {main}
+REQUEST_URI=/project/index.php?r=teacher/courserequire&cid=2&cstatus=Lecture
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/updaterule&cid=2&cstatus=Lecture
+---
+2012/12/29 18:23:12 [error] [php] Undefined variable: cid (C:\Zend\Apache2\htdocs\project\protected\views\teacher\_viewcourserequire.php:25)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CListView.php(260): TeacherController->renderFile()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CBaseListView.php(161): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CBaseListView.php(144): preg_replace_callback()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\zii\widgets\CBaseListView.php(129): CListView->renderContent()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(174): CListView->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\views\teacher\courserequire.php(18): TeacherController->widget()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): TeacherController->renderInternal()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): TeacherController->renderFile()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): TeacherController->renderPartial()
+#11 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(481): TeacherController->render()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionCourserequire()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#22 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#23 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#24 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/courserequire&cid=2&cstatus=Lecture
+in C:\Zend\Apache2\htdocs\project\protected\views\teacher\_viewcourserequire.php (25)
+in C:\Zend\Apache2\htdocs\project\protected\views\teacher\courserequire.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (481)
+2012/12/29 18:23:38 [error] [exception.CException] exception 'CException' with message 'Property "CListView.cid" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:174
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWidgetFactory.php(162): CComponent->__set('cid', '2')
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(147): CWidgetFactory->createWidget(Object(TeacherController), 'zii.widgets.CLi...', Array)
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(173): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\views\teacher\courserequire.php(20): CBaseController->widget('zii.widgets.CLi...', Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CController->renderPartial('courserequire', Array, true)
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(481): CController->render('courserequire', Array)
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionCourserequire()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('courserequire')
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/courser...')
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/project/index.php?r=teacher/courserequire&cid=2&cstatus=Lecture
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/updaterule&cid=2&cstatus=Lecture
+---
+2013/01/02 02:45:41 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'attend_all.studentId' in 'field list'. The SQL statement executed was: select attend_all.studentId as id,
+					s.studentCode, s.studentName, s.studentLastname,
+					(attendall.attend - coalesce(attendlate.late, 0)) as attend,
+					coalesce(attend_late.late, 0) as late,
+					attendall.attend as total,
+					(course.total - attendall.attend) as absent,
+					course.total as courseTotal,
+					attendall.attend >= rule.condition/100*course.total as qualified
+				from 
+					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					group by a.studentId) attendall
+				left outer join 
+					(select a.studentId , count(a.id) as late
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Late'
+					group by a.studentId) attendlate
+					on attendall.studentId = attendlate.studentId
+				join
+					(select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec) course
+				join tbl_courserule rule 
+					on attendall.courseId = rule.courseId and attendall.courseStatus = rule.courseStatus
+				join tbl_student s on attendall.studentId = s.id.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (444)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/02 02:45:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'attend_all.studentId' in 'field list'. The SQL statement executed was: select attend_all.studentId as id,
+					s.studentCode, s.studentName, s.studentLastname,
+					(attendall.attend - coalesce(attendlate.late, 0)) as attend,
+					coalesce(attend_late.late, 0) as late,
+					attendall.attend as total,
+					(course.total - attendall.attend) as absent,
+					course.total as courseTotal,
+					attendall.attend >= rule.condition/100*course.total as qualified
+				from 
+					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					group by a.studentId) attendall
+				left outer join 
+					(select a.studentId , count(a.id) as late
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Late'
+					group by a.studentId) attendlate
+					on attendall.studentId = attendlate.studentId
+				join
+					(select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec) course
+				join tbl_courserule rule 
+					on attendall.courseId = rule.courseId and attendall.courseStatus = rule.courseStatus
+				join tbl_student s on attendall.studentId = s.id' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php(372): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(444): CDbCommand->query()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/02 02:46:39 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'attend_all.studentId' in 'field list'. The SQL statement executed was: select attend_all.studentId as id,
+					s.studentCode, s.studentName, s.studentLastname,
+					(attendall.attend - coalesce(attendlate.late, 0)) as attend,
+					coalesce(attendlate.late, 0) as late,
+					attendall.attend as total,
+					(course.total - attendall.attend) as absent,
+					course.total as courseTotal,
+					attendall.attend >= rule.condition/100*course.total as qualified
+				from 
+					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					group by a.studentId) attendall
+				left outer join 
+					(select a.studentId , count(a.id) as late
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Late'
+					group by a.studentId) attendlate
+					on attendall.studentId = attendlate.studentId
+				join
+					(select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec) course
+				join tbl_courserule rule 
+					on attendall.courseId = rule.courseId and attendall.courseStatus = rule.courseStatus
+				join tbl_student s on attendall.studentId = s.id.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (444)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/02 02:46:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'attend_all.studentId' in 'field list'. The SQL statement executed was: select attend_all.studentId as id,
+					s.studentCode, s.studentName, s.studentLastname,
+					(attendall.attend - coalesce(attendlate.late, 0)) as attend,
+					coalesce(attendlate.late, 0) as late,
+					attendall.attend as total,
+					(course.total - attendall.attend) as absent,
+					course.total as courseTotal,
+					attendall.attend >= rule.condition/100*course.total as qualified
+				from 
+					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					group by a.studentId) attendall
+				left outer join 
+					(select a.studentId , count(a.id) as late
+					from tbl_coursestudy cs
+					join tbl_attend a on a.courseStudyId = cs.id
+					where cs.courseId = :cid
+					and cs.courseStatus = :cstatus
+					and cs.sectionGroup = :sec
+					and a.attendStatus = 'Late'
+					group by a.studentId) attendlate
+					on attendall.studentId = attendlate.studentId
+				join
+					(select count(distinct a.day) as total
+					from tbl_attend a 
+					where a.courseId = :cid
+					and a.courseStatus = :cstatus
+					and a.sectionGroup = :sec) course
+				join tbl_courserule rule 
+					on attendall.courseId = rule.courseId and attendall.courseStatus = rule.courseStatus
+				join tbl_student s on attendall.studentId = s.id' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php(372): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(444): CDbCommand->query()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 02:08:29 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'studentId' in 'where clause'. The SQL statement executed was: SELECT * FROM `tbl_courseinfo` `t` WHERE studentId=:sid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec LIMIT 1.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\StudentController.php (288)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 02:08:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'studentId' in 'where clause'. The SQL statement executed was: SELECT * FROM `tbl_courseinfo` `t` WHERE studentId=:sid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec LIMIT 1' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(1291): CDbCommand->queryRow()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(1396): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\Zend\Apache2\htdocs\project\protected\controllers\StudentController.php(288): CActiveRecord->find('studentId=:sid ...', Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): StudentController->actionStudycourse()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studycourse')
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('student/studyco...')
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#16 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/project/index.php?r=student/studycourse&cid=2&cstatus=Lecture&sec=500002
+HTTP_REFERER=http://localhost/project/index.php?r=student/home
+---
+2013/01/03 04:05:00 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (503)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 04:13:15 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT * FROM `tbl_coursestudy` `t` WHERE courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec AND studentId=:stid LIMIT 1.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\AttendController.php (108)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 04:13:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT * FROM `tbl_coursestudy` `t` WHERE courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec AND studentId=:stid LIMIT 1' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(1291): CDbCommand->queryRow()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(1396): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\Zend\Apache2\htdocs\project\protected\controllers\AttendController.php(108): CActiveRecord->find('courseId=:cours...', Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): AttendController->actionCreate()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('create')
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('attend/create')
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#16 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/project/index.php?r=attend/create
+HTTP_REFERER=http://localhost/project/index.php?r=attend/create
+---
+2013/01/03 06:03:40 [error] [php] Object of class CDbDataReader could not be converted to string (C:\Zend\Apache2\htdocs\project\protected\views\student\studycourse.php:67)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): StudentController->renderFile()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): StudentController->renderPartial()
+#2 C:\Zend\Apache2\htdocs\project\protected\controllers\StudentController.php(368): StudentController->render()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): StudentController->actionStudycourse()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): StudentController->runAction()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): StudentController->filterAccessControl()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): StudentController->runActionWithFilters()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): StudentController->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=student/studycourse&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\views\student\studycourse.php (67)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\StudentController.php (368)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 06:30:38 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'classattendance.tbl_rental' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `tbl_rental`.
+in C:\Zend\Apache2\htdocs\project\protected\models\Rental.php (19)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php (29)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 06:30:38 [error] [exception.CDbException] exception 'CDbException' with message 'The table "tbl_rental" for active record class "Rental" cannot be found in the database.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Rental))
+#1 C:\Zend\Apache2\htdocs\project\protected\models\Rental.php(19): CActiveRecord::model('Rental')
+#2 C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php(29): Rental::model()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): RentalController->actionIndex()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('')
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('rental')
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/project/index.php?r=rental
+---
+2013/01/03 06:35:22 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\auth\CWebUser.php(141): CComponent->__get('role')
+#1 C:\Zend\Apache2\htdocs\project\protected\controllers\AdminController.php(7): CWebUser->__get('role')
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionIndex()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/index')
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/project/index.php?r=admin/index
+---
+2013/01/03 13:31:39 [error] [php] PDO::__construct() [<a href='pdo.--construct'>pdo.--construct</a>]: [2002] No connection could be made because the target machine actively refused it.
+ (trying to connect via tcp://localhost:3306) (C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbConnection.php:422)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbConnection.php(331): CDbConnection->open()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbConnection.php(309): CDbConnection->setActive()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CModule.php(388): CDbConnection->init()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(431): CWebApplication->getComponent()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(624): CWebApplication->getDb()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(2311): Rental->getDbConnection()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct()
+#7 C:\Zend\Apache2\htdocs\project\protected\models\Rental.php(19): model()
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php(29): model()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): RentalController->actionIndex()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(287): RentalController->runAction()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): RentalController->runActionWithFilters()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): RentalController->run()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#16 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=rental/index
+in C:\Zend\Apache2\htdocs\project\protected\models\Rental.php (19)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php (29)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 14:02:33 [error] [php] PDO::__construct() [<a href='pdo.--construct'>pdo.--construct</a>]: [2002] No connection could be made because the target machine actively refused it.
+ (trying to connect via tcp://localhost:3306) (C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbConnection.php:422)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbConnection.php(331): CDbConnection->open()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbConnection.php(309): CDbConnection->setActive()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CModule.php(388): CDbConnection->init()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(431): CWebApplication->getComponent()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(624): CWebApplication->getDb()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(2311): User->getDbConnection()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct()
+#7 C:\Zend\Apache2\htdocs\project\protected\models\User.php(26): model()
+#8 C:\Zend\Apache2\htdocs\project\protected\components\UserIdentity.php(37): model()
+#9 C:\Zend\Apache2\htdocs\project\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\validators\CInlineValidator.php(43): LoginForm->authenticate()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\validators\CValidator.php(214): CInlineValidator->validateAttribute()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CModel.php(158): CInlineValidator->validate()
+#13 C:\Zend\Apache2\htdocs\project\protected\controllers\SiteController.php(94): LoginForm->validate()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(287): SiteController->runAction()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): SiteController->runActionWithFilters()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): SiteController->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=site/login
+in C:\Zend\Apache2\htdocs\project\protected\models\User.php (26)
+in C:\Zend\Apache2\htdocs\project\protected\components\UserIdentity.php (37)
+in C:\Zend\Apache2\htdocs\project\protected\models\LoginForm.php (52)
+2013/01/03 15:19:53 [error] [exception.CException] exception 'CException' with message 'Property "Courseinfo.days" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(144): CComponent->__get('days')
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php(2158): CActiveRecord->__get('days')
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php(1608): CHtml::resolveValue(Object(Courseinfo), 'days')
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\widgets\CActiveForm.php(796): CHtml::activeCheckBoxList(Object(Courseinfo), 'days', Array, Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php(81): CActiveForm->checkBoxList(Object(Courseinfo), 'days', Array)
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#8 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CController->renderPartial('_form', Array)
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CController->renderPartial('create', Array, true)
+#13 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CController->render('create', Array)
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#22 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('create')
+#24 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('courseinfo/crea...')
+#25 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#26 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/project/index.php?r=courseinfo/create
+HTTP_REFERER=http://localhost/project/index.php?r=courseinfo/index
+---
+2013/01/03 15:22:24 [error] [php] include(RentalForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\Zend\Apache2\htdocs\project\protected\yii\framework\YiiBase.php:423)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php(7): spl_autoload_call()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): RentalController->actionAdd()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(287): RentalController->runAction()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): RentalController->runActionWithFilters()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): RentalController->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#8 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=rental/add
+in C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php (7)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 15:30:22 [error] [php] substr() expects parameter 1 to be string, object given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:858)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#3 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 15:35:37 [error] [php] substr() expects parameter 1 to be string, object given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:858)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#3 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 15:36:09 [error] [php] Missing argument 2 for CHtml::checkBoxList(), called in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php on line 77 and defined (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:851)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#2 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#7 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#20 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 15:42:08 [error] [php] substr() expects parameter 1 to be string, object given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:858)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#3 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 15:54:03 [error] [php] Missing argument 2 for CHtml::listData(), called in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php on line 77 and defined (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:1765)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#2 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#7 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#20 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 15:54:30 [error] [php] explode() expects parameter 2 to be string, array given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:1806)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php(77): listData()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#4 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#9 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 15:58:56 [error] [php] explode() expects parameter 2 to be string, array given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:1806)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php(77): listData()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#4 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#9 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(117): CourseinfoController->render()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (77)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (117)
+2013/01/03 16:03:35 [error] [php] mb_strlen() expects parameter 1 to be string, array given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\validators\CStringValidator.php:85)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CModel.php(158): CStringValidator->validate()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(795): Courseinfo->validate()
+#2 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(105): Courseinfo->save()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (105)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 16:10:17 [error] [php] Undefined variable: studyDay (C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php:69)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#1 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#6 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (69)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 16:11:16 [error] [php] mb_strlen() expects parameter 1 to be string, array given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\validators\CStringValidator.php:85)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CModel.php(158): CStringValidator->validate()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(795): Courseinfo->validate()
+#2 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(98): Courseinfo->save()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (98)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 16:37:33 [error] [exception.CException] exception 'CException' with message 'Property "Courseinfo.type" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:174
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\ar\CActiveRecord.php(160): CComponent->__set('type', Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php(71): CActiveRecord->__set('type', Array)
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#5 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CController->renderPartial('_form', Array)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CController->renderPartial('create', Array, true)
+#10 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CController->render('create', Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('create')
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('courseinfo/crea...')
+#22 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#23 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/project/index.php?r=courseinfo/create
+HTTP_REFERER=http://localhost/project/index.php?r=courseinfo/index
+---
+2013/01/03 16:43:47 [error] [exception.CException] exception 'CException' with message 'Property "RentalForm.studyDay" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php(2158): CComponent->__get('studyDay')
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php(1608): CHtml::resolveValue(Object(RentalForm), 'studyDay')
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\widgets\CActiveForm.php(796): CHtml::activeCheckBoxList(Object(RentalForm), 'studyDay', Array, Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\views\rental\add.php(41): CActiveForm->checkBoxList(Object(RentalForm), 'studyDay', Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CController->renderPartial('add', Array, true)
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\RentalController.php(24): CController->render('add', Array)
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): RentalController->actionAdd()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('add')
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('rental/add')
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#16 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/project/index.php?r=rental/add
+---
+2013/01/03 16:48:18 [error] [exception.CException] exception 'CException' with message 'Property "RentalForm.courseId" is not defined.' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php(2158): CComponent->__get('courseId')
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php(1515): CHtml::resolveValue(Object(RentalForm), 'courseId')
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\widgets\CActiveForm.php(764): CHtml::activeDropDownList(Object(RentalForm), 'courseId', Array, Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php(21): CActiveForm->dropDownList(Object(RentalForm), 'courseId', Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#7 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CController->renderPartial('_form', Array)
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require('C:\Zend\Apache2...')
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Zend\Apache2...', Array, true)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CBaseController->renderFile('C:\Zend\Apache2...', Array, true)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CController->renderPartial('create', Array, true)
+#12 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(128): CController->render('create', Array)
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#21 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('create')
+#23 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('courseinfo/crea...')
+#24 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#25 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/project/index.php?r=courseinfo/create
+HTTP_REFERER=http://localhost/project/index.php?r=courseinfo/index
+---
+2013/01/03 17:16:48 [error] [php] substr() expects parameter 1 to be string, object given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:858)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#3 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(113): CourseinfoController->render()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (76)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (113)
+2013/01/03 17:21:06 [error] [php] substr() expects parameter 1 to be string, object given (C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\helpers\CHtml.php:858)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#3 C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php(18): CourseinfoController->renderPartial()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(127): require()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CBaseController.php(96): CourseinfoController->renderInternal()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(870): CourseinfoController->renderFile()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(783): CourseinfoController->renderPartial()
+#8 C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php(115): CourseinfoController->render()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): CourseinfoController->actionCreate()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CourseinfoController->runAction()
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CourseinfoController->filterAccessControl()
+#15 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#17 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CourseinfoController->runActionWithFilters()
+#18 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CourseinfoController->run()
+#19 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#20 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=courseinfo/create
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\_form.php (76)
+in C:\Zend\Apache2\htdocs\project\protected\views\courseinfo\create.php (18)
+in C:\Zend\Apache2\htdocs\project\protected\controllers\CourseinfoController.php (115)
+2013/01/03 18:46:20 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss'' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss'
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (401)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:46:20 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss'' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss'
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(401): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:46:36 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (401)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:46:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(401): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:47:50 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (403)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:47:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(403): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:48:43 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:48:43 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(406): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:49:09 [error] [exception.CException] exception 'CException' with message 'CDbCommand and its behaviors do not have a method or closure named "command".' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(406): CComponent->__call('command', Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(406): CDbCommand->command()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:49:57 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (405)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:49:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(405): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:50:48 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= 
+						CDateTimeParser::parse(08:02:00, 'hh:mm:' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= 
+						CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (404)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:50:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse(08:50:00, 'hh:mm:ss') >= 
+						CDateTimeParser::parse(08:02:00, 'hh:mm:' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE CDateTimeParser::parse(08:50:00, 'hh:mm:ss') >= 
+						CDateTimeParser::parse(08:02:00, 'hh:mm:ss')
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(404): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:51:35 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse($rule->lateTime, hh:mm:ss) >= 
+						CDateTimeParser::parse($astatus->ti' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = Attend 
+						WHERE CDateTimeParser::parse($rule->lateTime, hh:mm:ss) >= 
+						CDateTimeParser::parse($astatus->timeIn, hh:mm:ss)
+						.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (404)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:51:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '::parse($rule->lateTime, hh:mm:ss) >= 
+						CDateTimeParser::parse($astatus->ti' at line 2. The SQL statement executed was: UPDATE Attend SET attendStatus = Attend 
+						WHERE CDateTimeParser::parse($rule->lateTime, hh:mm:ss) >= 
+						CDateTimeParser::parse($astatus->timeIn, hh:mm:ss)
+						' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(404): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/03 18:53:08 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'classattendance.attend' doesn't exist. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE 1357174200 >= 1357171320 .
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (407)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/03 18:53:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'classattendance.attend' doesn't exist. The SQL statement executed was: UPDATE Attend SET attendStatus = 'Attend' 
+						WHERE 1357174200 >= 1357171320 ' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(407): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/04 03:26:43 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (527)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:00:56 [error] [php] Undefined variable: late (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:406)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:01:09 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE 1357258500 < 1357257720 AND 1357257720 <= 1357228800
+						OR attendStatus' at line 2. The SQL statement executed was: UPDATE tbl_attend SET attendStatus = 'Attend' WHERE 1357258500 >= 1357257720 
+						OR attendStatus = 'Late' WHERE 1357258500 < 1357257720 AND 1357257720 <= 1357228800
+						OR attendStatus = 'Absent' WHERE 1357257720 == '00:00:00' 
+						OR attendStatus = 'Absent' WHERE 1357257720 == null.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (411)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:01:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE 1357258500 < 1357257720 AND 1357257720 <= 1357228800
+						OR attendStatus' at line 2. The SQL statement executed was: UPDATE tbl_attend SET attendStatus = 'Attend' WHERE 1357258500 >= 1357257720 
+						OR attendStatus = 'Late' WHERE 1357258500 < 1357257720 AND 1357257720 <= 1357228800
+						OR attendStatus = 'Absent' WHERE 1357257720 == '00:00:00' 
+						OR attendStatus = 'Absent' WHERE 1357257720 == null' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(411): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/04 15:02:10 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 
+						OR attendStatus = 'Late' WHERE 1357258500 < 1357257720 AND 1357257720 <=' at line 1. The SQL statement executed was: UPDATE tbl_attend SET attendStatus = 'Attend' WHERE 1357258500 >= 1357257720, 
+						OR attendStatus = 'Late' WHERE 1357258500 < 1357257720 AND 1357257720 <= 1357228800,
+						OR attendStatus = 'Absent' WHERE 1357257720 == '00:00:00' ,
+						OR attendStatus = 'Absent' WHERE 1357257720 == null.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (411)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:02:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 
+						OR attendStatus = 'Late' WHERE 1357258500 < 1357257720 AND 1357257720 <=' at line 1. The SQL statement executed was: UPDATE tbl_attend SET attendStatus = 'Attend' WHERE 1357258500 >= 1357257720, 
+						OR attendStatus = 'Late' WHERE 1357258500 < 1357257720 AND 1357257720 <= 1357228800,
+						OR attendStatus = 'Absent' WHERE 1357257720 == '00:00:00' ,
+						OR attendStatus = 'Absent' WHERE 1357257720 == null' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(411): CDbCommand->execute()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/04 15:10:25 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (535)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:13:36 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (529)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:14:09 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (529)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:19:09 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (541)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:19:26 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (541)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:25:18 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$lateR' in 'where clause'. The SQL statement executed was: UPDATE `tbl_attend` SET `attendStatus`=:attendStatus WHERE $lateR >= $timein AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec.
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (420)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:25:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$lateR' in 'where clause'. The SQL statement executed was: UPDATE `tbl_attend` SET `attendStatus`=:attendStatus WHERE $lateR >= $timein AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec' in C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\db\CDbCommand.php(1212): CDbCommand->execute(Array)
+#1 C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php(420): CDbCommand->update('tbl_attend', Array, '$lateR >= $time...', Array)
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\actions\CInlineAction.php(50): TeacherController->actionStudysemester()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): CController->run('studysemester')
+#12 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('teacher/studyse...')
+#13 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 C:\Zend\Apache2\htdocs\project\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+HTTP_REFERER=http://localhost/project/index.php?r=teacher/home
+---
+2013/01/04 15:27:26 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (534)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:28:58 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (537)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:59:24 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (534)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 15:59:44 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:406)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 16:00:57 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:407)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (407)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 16:36:32 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:405)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (405)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 16:36:58 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:405)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (405)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 16:38:03 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (547)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 16:56:51 [error] [php] Variable passed to each() is not an array or object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:406)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#10 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:04:19 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (554)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:05:43 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (554)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:06:47 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:406)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:07:15 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (547)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:07:18 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:406)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:13:02 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:406)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (406)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:18:30 [error] [php] Undefined variable: timein (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:408)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (408)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:18:46 [warning] [application] Failed to set unsafe attribute "id" of "Courserule".
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (547)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 17:22:25 [error] [php] Undefined variable: lateR (C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php:438)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): TeacherController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): TeacherController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): TeacherController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): TeacherController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=teacher/studysemester&cid=2&cstatus=Lecture&sec=500001
+in C:\Zend\Apache2\htdocs\project\protected\controllers\TeacherController.php (438)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 20:01:33 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\AttendController.php:114)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): AttendController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): AttendController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): AttendController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): AttendController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=attend/create
+in C:\Zend\Apache2\htdocs\project\protected\controllers\AttendController.php (114)
+in C:\Zend\Apache2\htdocs\project\index.php (13)
+2013/01/04 20:01:52 [error] [php] Trying to get property of non-object (C:\Zend\Apache2\htdocs\project\protected\controllers\AttendController.php:114)
+Stack trace:
+#0 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(134): AttendController->runAction()
+#1 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CInlineFilter.php(59): AttendController->filterAccessControl()
+#4 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CController.php(266): AttendController->runActionWithFilters()
+#7 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(283): AttendController->run()
+#8 C:\Zend\Apache2\htdocs\project\protected\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 C:\Zend\Apache2\htdocs\project\protected\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\Zend\Apache2\htdocs\project\index.php(13): CWebApplication->run()
+REQUEST_URI=/project/index.php?r=attend/create
+in C:\Zend\Apache2\htdocs\project\protected\controllers\AttendController.php (114)
+in C:\Zend\Apache2\htdocs\project\index.php (13)

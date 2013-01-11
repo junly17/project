@@ -1,11 +1,12 @@
 select attend_all.studentId,
 s.studentCode, s.studentName, s.studentLastname,
-(attend_all.attend - coalesce(attend_late.late, 0)) as attend,
+(attend_all.attend - (coalesce(attend_late.late, 0) + coalesce(attend_absent.absent, 0))) as attend,
 coalesce(attend_late.late, 0) as late,
-attend_all.attend as total,
-(course.total - attend_all.attend) as absent,
+(attend_all.attend - coalesce(attend_absent.absent, 0)) as total,
+(course.total - attend_all.attend) + coalesce(attend_absent.absent, 0)as absent,
 course.total as course_total,
-attend_all.attend >= rule.condition/100*course.total as cond
+(attend_all.attend - coalesce(attend_absent.absent, 0)) >= 
+rule.condition/100*course.total as cond
 from (select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
 from tbl_coursestudy cs
 join tbl_attend a on a.courseStudyId = cs.id
@@ -23,6 +24,16 @@ and cs.sectionGroup = '500001'
 and a.attendStatus = 'Late'
 group by a.studentId) attend_late
 on attend_all.studentId = attend_late.studentId
+left outer join 
+(select a.studentId , count(a.id) as absent
+from tbl_coursestudy cs
+join tbl_attend a on a.courseStudyId = cs.id
+where cs.courseId = 2
+and cs.courseStatus = 'Lecture'
+and cs.sectionGroup = '500001'
+and a.attendStatus = 'Absent'
+group by a.studentId) attend_absent
+on attend_absent.studentId = attend_all.studentId
 join
 (select count(distinct a.day) as total
 from tbl_attend a 

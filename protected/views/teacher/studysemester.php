@@ -1,10 +1,11 @@
 <?php
 $this->breadcrumbs=array(
 	'Home'=>array('teacher/home'),
-	'Semester'
+	'SemesterAttend',
 );
 ?>
-<h2>สถานะการเข้าชั้นเรียนรายภาคการศึกษา</h2>
+
+<h1 align="center">สถานะการเข้าชั้นเรียนรายภาคการศึกษา</h1>
 <div class="view">
 	<div><b>Course:</b>
 	<?php echo $cinfo->course->fullName; ?></div>
@@ -44,10 +45,10 @@ $this->breadcrumbs=array(
 		'studentCode',
 		'studentName',
 		'studentLastname',
-		'attend',
+		'onTime',
 		'late',
 		'absent',
-		'total',
+		'totalAttend',
 		'qualified'
 	),
 )); 

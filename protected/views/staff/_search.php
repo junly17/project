@@ -17,12 +17,12 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'staffName'); ?>
-		<?php echo $form->textField($model,'staffName',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($model,'staffName',array('size'=>25,'maxlength'=>35)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'staffLastName'); ?>
-		<?php echo $form->textField($model,'staffLastname',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($model,'staffLastname',array('size'=>25,'maxlength'=>35)); ?>
 	</div>
 
 	<div class="row buttons">

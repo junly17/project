@@ -1,4 +1,11 @@
-<h2>สถานะการเข้าชั้นเรียนรายวัน</h2>
+<?php
+$this->breadcrumbs=array(
+	'Home'=>array('teacher/home'),
+	'CourseAttend',
+);
+?>
+
+<h1 align="center">สถานะการเข้าชั้นเรียนรายวัน</h1>
 <div class="view">
 	<div><b>Course:</b>
 	<?php echo $cinfo->course->fullName; ?></div>
@@ -64,7 +71,7 @@
 		'studentLastname',
 		'timeIn',
 		'timeOut',
-		'week',
+		// 'week',
 		'attendStatus'
 	),
 )); 
