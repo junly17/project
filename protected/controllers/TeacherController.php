@@ -506,7 +506,7 @@ class TeacherController extends Controller
 
 		if(isset($_POST['Courserule']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$cstatus = $_GET['cstatus'];
 			$model=Courserule::model()->find('courseId=:cid AND courseStatus=:cstatus',
 				array(':cid'=>$_POST['Courserule']['courseId'],':cstatus'=>$cstatus));

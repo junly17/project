@@ -79,7 +79,7 @@ class CourseinfoController extends Controller
 
 		if(isset($_POST['Courseinfo']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$model->attributes=$_POST['Courseinfo'];
 			$cinfo = Courseinfo::model()->find('courseId=:course', array(':course'=>$model->courseId));
 
@@ -148,7 +148,7 @@ class CourseinfoController extends Controller
 
 		if(isset($_POST['Courseinfo']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$model->attributes=$_POST['Courseinfo'];
 			$cinfo = Courseinfo::model()->find('courseId=:course', array(':course'=>$model->courseId));
 

@@ -79,7 +79,7 @@ class AttendController extends Controller
 
 		if(isset($_POST['Attend']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$model->attributes=$_POST['Attend'];
 
 			$cinfo = Courseinfo::model()->find('courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec',
@@ -152,7 +152,7 @@ class AttendController extends Controller
 
 		if(isset($_POST['Attend']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$model->attributes=$_POST['Attend'];
 
 			$cinfo = Courseinfo::model()->find('courseId=:course AND courseStatus=:cstatus AND sectionGroup=:sec',

@@ -79,7 +79,7 @@ class CourseruleController extends Controller
 
 		if(isset($_POST['Courserule']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$model->attributes=$_POST['Courserule'];
 			$crule = Courserule::model()->find('courseId=:course', array(':course'=>$model->courseId));
 
@@ -129,7 +129,7 @@ class CourseruleController extends Controller
 
 		if(isset($_POST['Courserule']))
 		{
-			date_default_timezone_set('Asia/Taipei');
+			date_default_timezone_set('Asia/Bangkok');
 			$model->attributes=$_POST['Courserule'];
 			$crule = Courserule::model()->find('courseId=:course', array(':course'=>$model->courseId));
 
