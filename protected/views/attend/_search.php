@@ -49,7 +49,14 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'day'); ?>
-		<?php echo $form->textField($model,'day'); ?>
+		<?php echo CHtml::activeTextField($model,'day',array("id"=>"day")); ?>
+		&nbsp;(calendar appears when textbox is clicked)
+			<?php $this->widget('application.extensions.calendar.SCalendar',
+			array(
+			'inputField'=>'day',
+			'ifFormat'=>'%Y-%m-%d',
+			));
+		?>
 	</div>
 
 	<div class="row">

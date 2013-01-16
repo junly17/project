@@ -65,7 +65,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'studyDay'); ?>
-		<?php echo $form->textField($model,'studyDay',array('size'=>30,'maxlength'=>30)); ?>
+		<?php echo $form->checkBoxList($model,'studyDay',array(
+	    	'0'=>'Sun',
+	    	'1'=>'Mon',
+	    	'2'=>'Tue',
+	    	'3'=>'Wed',
+	    	'4'=>'Thu',
+	    	'5'=>'Fri',
+	    	'6'=>'Sat'
+	    )); ?>
 		<?php echo $form->error($model,'studyDay'); ?>
 	</div>
 

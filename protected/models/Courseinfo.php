@@ -121,4 +121,22 @@ class Courseinfo extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getDaysLabel()
+	{
+		// create array from string
+		$days = explode(',', $this->studyDay);
+		$label = '';
+		foreach($days as $d)
+		{
+			if($d == '0') $label .= 'Sun ';
+			else if($d == '1') $label .= 'Mon ';
+			else if($d == '2') $label .= 'Tue ';
+			else if($d == '3') $label .= 'Wed ';
+			else if($d == '4') $label .= 'Thu ';
+			else if($d == '5') $label .= 'Fri ';
+			else if($d == '6') $label .= 'Sat ';
+		}
+		return $label;
+	}
 }
