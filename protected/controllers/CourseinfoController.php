@@ -110,6 +110,14 @@ class CourseinfoController extends Controller
 			}
 			else
 			{
+				// days was sent as array
+				// we will store it in $days first
+				$days = $_POST['Courseinfo']['studyDay'];
+				// function implode will connect all array items to string
+				$days = implode(',', $days);
+				// store days to Active Record
+				$model->studyDay = $days;
+
 				if($model->save())
 					$this->redirect(array('view','id'=>$model->id));
 			}
@@ -157,6 +165,14 @@ class CourseinfoController extends Controller
 				}
 				else
 				{
+					// days was sent as array
+					// we will store it in $days first
+					$days = $_POST['Courseinfo']['studyDay'];
+					// function implode will connect all array items to string
+					$days = implode(',', $days);
+					// store days to Active Record
+					$model->studyDay = $days;
+
 					if($model->save())
 						$this->redirect(array('view','id'=>$model->id));
 				}
@@ -164,6 +180,14 @@ class CourseinfoController extends Controller
 			}
 			else
 			{
+				// days was sent as array
+				// we will store it in $days first
+				$days = $_POST['Courseinfo']['studyDay'];
+				// function implode will connect all array items to string
+				$days = implode(',', $days);
+				// store days to Active Record
+				$model->studyDay = $days;
+				
 				if($model->save())
 					$this->redirect(array('view','id'=>$model->id));
 			}

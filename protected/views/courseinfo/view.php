@@ -32,7 +32,10 @@ $this->menu=array(
 		'timeOut',
 		'build',
 		'room',
-		'studyDay',
+		array(
+			'name'=>'studyDay',
+			'value'=>$model->getDaysLabel(),
+		),
 		array(
 			'name'=>'teacherId',
 			'value'=>$model->teacher->fullname,

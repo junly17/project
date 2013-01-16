@@ -38,7 +38,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('studyDay')); ?>:</b>
-	<?php echo CHtml::encode($data->studyDay); ?>
+	<?php echo CHtml::encode($data->getDaysLabel()); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->teacher->getAttributeLabel('teacher')); ?>:</b>
