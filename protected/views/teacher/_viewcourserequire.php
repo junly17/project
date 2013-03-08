@@ -17,7 +17,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('condition')); ?>:</b>
-	<?php echo CHtml::encode($data->condition); ?> %
+	<?php echo CHtml::encode($data->conditionRule); ?> %
 	<br />
 
 

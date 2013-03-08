@@ -227,3 +227,32 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+span#Courseinfo_studyDay label
+{
+	display: inline;
+	margin-right: 10px;
+}
+span#Courseinfo_studyDay br
+{
+	display: none;
+}
+div.form .row
+{
+	margin: 15px 0 !important;
+}
+form#courseinfo-form
+{
+	margin-left: 30px;
+}
+
+div#content h1
+{
+	margin-bottom: 15px;
+}
+
+div#content li
+{
+	margin-bottom: 10px;
+	margin-left: 30px;
+}

@@ -324,7 +324,7 @@ class StudentController extends Controller
 
 		$dataProvider = new CArrayDataProvider($courseInfo);
 
-		$quli = "select (attend_all.attend - coalesce(attend_absent.absent, 0)) >= rule.condition/100*course.total as qualified
+		$quli = "select (attend_all.attend - coalesce(attend_absent.absent, 0)) >= rule.conditionRule/100*course.total as qualified
 				from 
 					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
 					from tbl_coursestudy cs
@@ -356,6 +356,9 @@ class StudentController extends Controller
 		$qualify->params = array(':cid'=>$cid,':sec'=>$sec,':cstatus'=>$cstatus,':user'=>$student->id);
 		$qualify = $qualify->query();
 		$qualifyValue = $qualify->readAll();
+		if($qualifyValue == null){
+			$qualifyValue[0] = array('qualified' => '7');
+		}
 
 		$this->render('studycourse',array(
 			'dataProvider'=>$dataProvider,

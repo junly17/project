@@ -18,4 +18,6 @@ $this->breadcrumbs=array(
 	echo '<br>';echo $weekday;
 	echo '<br>';echo $day;
 	echo '<br>';echo $time;
+
+	
 ?>

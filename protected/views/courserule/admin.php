@@ -53,7 +53,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'courseStatus',
 		'lateTime',
 		'absenceTime',
-		'condition',
+		'conditionRule',
 		array(
 			'class'=>'CButtonColumn',
 		),

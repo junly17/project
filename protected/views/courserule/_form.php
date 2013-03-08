@@ -47,9 +47,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'condition'); ?>
-		<?php echo $form->textField($model,'condition'); ?>
+		<?php echo $form->textField($model,'conditionRule'); ?>
 		(%)
-		<?php echo $form->error($model,'condition'); ?>
+		<?php echo $form->error($model,'conditionRule'); ?>
 	</div>
 
 	<div class="row buttons">

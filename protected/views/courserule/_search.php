@@ -37,7 +37,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'condition'); ?>
-		<?php echo $form->textField($model,'condition'); ?>
+		<?php echo $form->textField($model,'conditionRule'); ?>
 	</div>
 
 	<div class="row buttons">

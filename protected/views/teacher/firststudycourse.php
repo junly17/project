@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 	<?php echo $cinfo->room; ?></div>
 
 	<div><b>Study Day:</b>
-	<?php echo $cinfo->studyDay; ?></div>
+	<?php echo $cinfo->getDaysLabel(); ?></div>
 </div>
 
 <div class="form">

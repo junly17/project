@@ -29,6 +29,6 @@ $this->menu=array(
 		'courseStatus',
 		'lateTime',
 		'absenceTime',
-		'condition',
+		'conditionRule',
 	),
 )); ?>

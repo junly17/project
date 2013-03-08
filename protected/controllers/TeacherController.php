@@ -323,7 +323,7 @@ class TeacherController extends Controller
 		$sec = $_GET['sec'];
 		
 		$user = Teacher::model()->find('userId=:user',array(':user'=>Yii::app()->user->id));
-		$cinfo = Courseinfo::model()->find('teacherID=:tid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
+		$cinfo = Courseinfo::model()->find('teacherId=:tid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
 			 array(':tid'=>$user->id,':cid'=>$cid,':cstatus'=>$cstatus,':sec'=>$sec));
 
 		$dataProvider = new CArrayDataProvider(array());
@@ -385,7 +385,7 @@ class TeacherController extends Controller
 		$sec = $_GET['sec'];
 		
 		$user = Teacher::model()->find('userId=:user',array(':user'=>Yii::app()->user->id));
-		$cinfo = Courseinfo::model()->find('teacherID=:tid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
+		$cinfo = Courseinfo::model()->find('teacherId=:tid AND courseId=:cid AND courseStatus=:cstatus AND sectionGroup=:sec',
 			 array(':tid'=>$user->id,':cid'=>$cid,':cstatus'=>$cstatus,':sec'=>$sec));
 
 		$rule = Courserule::model()->find('courseId=:cid AND courseStatus=:cstatus',
@@ -409,7 +409,7 @@ class TeacherController extends Controller
 					(attend_all.attend - coalesce(attend_absent.absent, 0))as totalAttend,
 					(course.total - attend_all.attend) + coalesce(attend_absent.absent, 0) as absent,
 					course.total as courseTotal,
-					(attend_all.attend - coalesce(attend_absent.absent, 0)) >= rule.condition/100*course.total as qualified
+					(attend_all.attend - coalesce(attend_absent.absent, 0)) >= rule.conditionRule/100*course.total as qualified
 				from 
 					(select a.studentId , count(a.id) as attend, cs.courseId, cs.courseStatus
 					from tbl_coursestudy cs

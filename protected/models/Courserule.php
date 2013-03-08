@@ -8,7 +8,7 @@
  * @property integer $courseId
  * @property string $lateTime
  * @property string $absenceTime
- * @property integer $condition
+ * @property integer $conditionRule
  * @property string $courseStatus
  *
  * The followings are the available model relations:
@@ -42,13 +42,12 @@ class Courserule extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('courseId, lateTime, absenceTime, condition, courseStatus', 'required'),
-			array('courseId, condition', 'numerical', 'integerOnly'=>true),
+			array('courseId, lateTime, absenceTime, conditionRule, courseStatus', 'required'),
+			array('courseId, conditionRule', 'numerical', 'integerOnly'=>true),
 			array('courseStatus', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, courseId, lateTime, absenceTime, condition, courseStatus', 'safe', 'on'=>'search'),
-			array('lateTime,absenceTime', 'type', 'type' => 'time', 'message' => '{attribute} is incorrect', 'timeFormat' => 'hh:mm:ss'),
+			array('id, courseId, lateTime, absenceTime, conditionRule, courseStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,7 +73,7 @@ class Courserule extends CActiveRecord
 			'courseId' => 'Course',
 			'lateTime' => 'Late Time',
 			'absenceTime' => 'Absence Time',
-			'condition' => 'Condition',
+			'conditionRule' => 'Condition Rule',
 			'courseStatus' => 'Course Status',
 		);
 	}
@@ -94,7 +93,7 @@ class Courserule extends CActiveRecord
 		$criteria->compare('courseId',$this->courseId);
 		$criteria->compare('lateTime',$this->lateTime,true);
 		$criteria->compare('absenceTime',$this->absenceTime,true);
-		$criteria->compare('condition',$this->condition);
+		$criteria->compare('conditionRule',$this->conditionRule);
 		$criteria->compare('courseStatus',$this->courseStatus,true);
 
 		return new CActiveDataProvider($this, array(

@@ -29,13 +29,13 @@ $this->breadcrumbs=array(
 	<?php echo $cinfo->room; ?></div>
 
 	<div><b>Study Day:</b>
-	<?php echo $cinfo->studyDay; ?></div>
+	<?php echo $cinfo->getDaysLabel(); ?></div>
 
 	<div><b>Teacher:</b>
 	<?php echo $cinfo->teacher->fullName; ?></div>
 
 	<div><b>Condition:</b>
-	<?php echo $rule->condition; ?> %</div>
+	<?php echo $rule->conditionRule; ?> %</div>
 
 	<div><b>Course Total:</b>
 	<?php echo $courseTotal[0]['total']; ?> Time</div>
@@ -94,6 +94,9 @@ $this->breadcrumbs=array(
 		}
 		else if(text == '0'){
 			$(this).text('Not qualified').css('color','red');
+		}
+		else{
+			$(this).text('-').css('color','black');
 		}
 	});
 	$('#attend-sum span.attend').text(attendCount).css('color','#05C405');
